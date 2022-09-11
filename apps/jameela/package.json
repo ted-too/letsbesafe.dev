@@ -4,6 +4,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
+    "vercel-build": "pnpm exec prisma generate && pnpm exec prisma migrate deploy && pnpm run build",
     "build": "pnpm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"pnpm run dev:css\" \"remix dev -p 3005\"",
