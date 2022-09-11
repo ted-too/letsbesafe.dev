@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model YTGetVideos {
+  id        String   @id @default(uuid())
+  query     String
+  items     Json
+  createdAt DateTime @default(now())
+
+  @@index([query], type: Hash)
+}
+
+model YTGetById {
+  id         String   @id @default(uuid())
+  title      String
+  duration   Int
+  thumbnail  Json
+  thumbnails Json
+  createdAt  DateTime @default(now())
+}
