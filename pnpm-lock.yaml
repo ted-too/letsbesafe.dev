@@ -43,7 +43,6 @@ importers:
       spin-delay: ^1.2.0
       tailwindcss: ^3.1.8
       tiny-invariant: ^1.2.0
-      tsconfig: workspace:*
       typescript: ^4.7.4
       ytdl-core: ^4.11.2
       ytsr: ^3.8.0
@@ -80,11 +79,7 @@ importers:
       postcss: 8.4.16
       prisma: 4.3.1
       tailwindcss: 3.1.8_postcss@8.4.16
-      tsconfig: link:../../packages/tsconfig
       typescript: 4.8.3
-
-  packages/tsconfig:
-    specifiers: {}
 
 packages:
 
