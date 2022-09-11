@@ -10,7 +10,8 @@
     "prisma:generate": "pnpm exec prisma generate",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
     "deploy": "fly deploy --remote-only",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "start:prod": "pnpm exec prisma migrate deploy && pnpm run start"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
@@ -30,6 +31,7 @@
     "spin-delay": "^1.2.0",
     "tiny-invariant": "^1.2.0",
     "ytdl-core": "^4.11.2",
+    "prisma": "^4.3.1",
     "ytsr": "^3.8.0"
   },
   "devDependencies": {
@@ -44,7 +46,6 @@
     "concurrently": "^7.3.0",
     "eslint": "^8.20.0",
     "postcss": "^8.4.16",
-    "prisma": "^4.3.1",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.7.4"
   },
