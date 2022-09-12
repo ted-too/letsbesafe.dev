@@ -24,8 +24,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          working-directory: "./apps/jameela"
-          file: "./Dockerfile"
+          context: "./apps"
+          file: "./jameela/Dockerfile"
           push: true
           tags: jameela/app:latest
       - name: CapRover Deploy
