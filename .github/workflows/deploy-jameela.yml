@@ -2,8 +2,12 @@ name: Deploy to CapRover
 
 on:
   push:
-    paths:
-      - "apps/jameela/**"
+    branches: ["main"]
+  pull_request:
+    types: [opened, synchronize]
+# push:
+#   paths:
+#     - "apps/jameela/**"
 #   workflow_run:
 #     workflows: ["CI"]
 #     types:
