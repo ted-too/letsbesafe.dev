@@ -13,7 +13,7 @@ FROM base as deps
 RUN mkdir /app
 WORKDIR /app
 
-ADD package.json ./
+ADD ./jameela/package.json ./
 ADD prisma .
 RUN pnpm install
 RUN pnpm exec prisma generate
