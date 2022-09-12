@@ -9,21 +9,17 @@ on:
 jobs:
   caprover-deploy:
     runs-on: ubuntu-20.04
-    container: node:16
     steps:
-        # Build image
-      - name: Check out code
-        uses: actions/checkout@v2
+      - # Setting up Docker Buildx with docker-container driver is required
+        # at the moment to be able to use a subdirectory with Git context
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build and push
+        uses: docker/build-push-action@v3
         with:
-          fetch-depth: 2
-      - name: Push docker image to GitHub Packages
-        uses: docker/build-push-action@v1
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: ted-too/letsbesafe.dev/jameela
-          tag_with_ref: true
-        # Deploy image from github packages
+          context: "./apps/jameela"
+          push: true
+          tags: jameela/app:latest
       - name: CapRover Deploy
         uses: floms/action-caprover@v1
         with:
