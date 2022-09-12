@@ -2,9 +2,8 @@ name: Deploy to CapRover
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    types: [opened, synchronize]
+    paths:
+      - "apps/jameela/**"
 #   workflow_run:
 #     workflows: ["CI"]
 #     types:
@@ -21,8 +20,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: "./apps/jameela/"
-          file: "./apps/jameela/Dockerfile"
+          working-directory: "./apps/jameela"
+          file: "./Dockerfile"
           push: true
           tags: jameela/app:latest
       - name: CapRover Deploy
