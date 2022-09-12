@@ -17,6 +17,7 @@ jobs:
   caprover-deploy:
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
       - # Setting up Docker Buildx with docker-container driver is required
         # at the moment to be able to use a subdirectory with Git context
         name: Set up Docker Buildx
