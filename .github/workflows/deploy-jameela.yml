@@ -21,6 +21,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
+          context: "./apps/jameela/"
           file: "./apps/jameela/Dockerfile"
           push: true
           tags: jameela/app:latest
