@@ -1,4 +1,5 @@
 # Jameela
-*[jah-mee-laa] – ‘beautiful’ swahili*
+
+_[jah-mee-laa] – ‘beautiful’ swahili_
 
 [jameela.letsbesafe.dev](https://jameela.letsbesafe.dev)

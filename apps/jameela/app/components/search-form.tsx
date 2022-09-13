@@ -1,9 +1,9 @@
+import { Button, LoadingSpinner, TextInput } from "./misc";
 import { ErrorBoundaryComponent } from "@remix-run/node";
 import { useFetcher, useTransition } from "@remix-run/react";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useState } from "react";
-import { TextInput, Button, LoadingSpinner } from "./misc";
 
 type Props = {
   firstSearch?: boolean;

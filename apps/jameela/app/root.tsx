@@ -1,9 +1,11 @@
-import clsx from "clsx";
 import Layout from "./components/layout";
+import { LoadingSpinner } from "./components/misc";
+import Toast from "./components/toast";
 import styles from "./styles/app.css";
+import type { Theme } from "./utils/theme-provider";
+import { ThemeProvider, useTheme } from "./utils/theme-provider";
 import { getThemeSession } from "./utils/theme.server";
-import { Theme, ThemeProvider, useTheme } from "./utils/theme-provider";
-import { HeadersFunction, LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { HeadersFunction, LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -14,10 +16,9 @@ import {
   useLoaderData,
   useTransition,
 } from "@remix-run/react";
-import { useState, useEffect } from "react";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
 import { useSpinDelay } from "spin-delay";
-import { LoadingSpinner } from "./components/misc";
-import Toast from "./components/toast";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

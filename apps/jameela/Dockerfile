@@ -1,66 +1,50 @@
-# base node image
-FROM node:16-bullseye-slim as base
+# turbo prune for pnpm still inop
+# Image size could be optimized but i'm too tired rn tbh
+# TODO: Update and implement turbo prune once available
+# useful: https://github.com/vercel/turborepo/issues/534#issuecomment-1241495163
+# original example: https://github.com/vercel/turborepo/blob/main/examples/with-docker/apps/web/Dockerfile
 
-# Install openssl for Prisma
-RUN apt-get update && apt-get install -y openssl
+FROM node:18-alpine as base
+RUN apk add --no-cache libc6-compat && corepack enable
+# ENV NODE_ENV production
 
-# Install pnpm
-RUN npm install -g pnpm
-
-# Install all node_modules, including dev dependencies
-FROM base as deps
-
-RUN mkdir /app
+# build with dev deps
+FROM base as builder
 WORKDIR /app
 
-ADD ./jameela/package.json ./
-ADD prisma .
-RUN pnpm install
-RUN pnpm exec prisma generate
+COPY ./packages /app/packages
+COPY ./apps/jameela /app/apps/jameela
 
-# Setup production node_modules
-FROM base as production-deps
+# Copy clean root files to root folder
+COPY ./turbo.json /app/turbo.json
+COPY ./.npmrc /app/.npmrc
+# Add lockfile and package.json's of isolated subworkspace
+COPY ./package.json /app/package.json
+COPY ./pnpm-lock.yaml /app/pnpm-lock.yaml
+COPY ./pnpm-workspace.yaml /app/pnpm-workspace.yaml
 
-RUN mkdir /app
+# Install deps, build, finally prune with pnpm 
+RUN pnpm install && pnpm turbo run build --filter=jameela... && pnpm --filter jameela --prod deploy pruned && pnpm --filter database deploy pruned-db
+
+WORKDIR /app/pruned-db
+RUN pnpm run generate
+
+# using prod deps except prisma
+FROM base as runner
 WORKDIR /app
+COPY --from=builder /app/pruned/package.json .
+COPY --from=builder /app/pruned/build ./build
+COPY --from=builder /app/pruned/public ./public
+COPY --from=builder /app/pruned/node_modules ./node_modules
+COPY --from=builder /app/pruned-db ./node_modules/database
 
-COPY --from=deps /app/node_modules /app/node_modules 
-COPY --from=deps /app/pnpm-lock.yaml /app/pnpm-lock.yaml 
-ADD package.json ./
-RUN pnpm prune --production
+# Don't run production as root
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S remix -u 1001
 
-# Build the app
-FROM base as build
+USER remix
 
-ENV NODE_ENV=production
+EXPOSE 3000
+ENV PORT 3000
 
-RUN mkdir /app
-WORKDIR /app
-
-COPY --from=deps /app/node_modules /app/node_modules
-
-# If we're using Prisma, uncomment to cache the prisma schema
-# ADD prisma .
-# RUN pnpm exec prisma generate
-
-ADD . .
-RUN pnpm run build
-
-# Finally, build the production image with minimal footprint
-FROM base
-
-ENV NODE_ENV=production
-
-RUN mkdir /app
-WORKDIR /app
-
-COPY --from=production-deps /app/node_modules /app/node_modules
-
-# Uncomment if using Prisma
-# COPY --from=build /app/node_modules/.prisma /app/node_modules/.prisma
-
-COPY --from=build /app/build /app/build
-COPY --from=build /app/public /app/public
-ADD . .
-
-CMD ["pnpm", "run", "start:prod"]
+CMD ["pnpm", "run", "start"]

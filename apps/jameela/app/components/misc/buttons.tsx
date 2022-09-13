@@ -1,6 +1,6 @@
+import { LoadingSpinner } from "./loaders";
 import clsx from "clsx";
 import { ComponentProps } from "react";
-import { LoadingSpinner } from "./loaders";
 
 type IconButtonProps = {
   variant?: "default" | "transparent";

@@ -1,9 +1,9 @@
+import { Theme, isTheme } from "./theme-provider";
 import { createCookieSessionStorage } from "@remix-run/node";
-import { isTheme, Theme } from "./theme-provider";
 
-const sessionSecret = process.env.SESSION_SECRET;
+const sessionSecret = process.env.JAMEELA_SESSION_SECRET;
 if (!sessionSecret) {
-  throw new Error("SESSION_SECRET must be set");
+  throw new Error("JAMEELA_SESSION_SECRET must be set");
 }
 
 const themeStorage = createCookieSessionStorage({

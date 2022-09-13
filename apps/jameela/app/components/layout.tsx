@@ -1,10 +1,10 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { Form, Link } from "@remix-run/react";
-import { ReactNode } from "react";
 import { GithubIcon, IconButton, JameelaLogo, LetsBeSafeLogo } from "./misc";
+import { Form, Link } from "@remix-run/react";
 import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
+import { Moon, Sun1 } from "iconsax-react";
+import { ReactNode } from "react";
 import { Theme, useTheme } from "~/utils/theme-provider";
-import { Sun1, Moon } from "iconsax-react";
 
 type Props = {
   children: ReactNode;

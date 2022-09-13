@@ -1,9 +1,9 @@
-import invariant from "tiny-invariant";
-import { json, LoaderFunction } from "@remix-run/node";
+import { LoaderFunction, json } from "@remix-run/node";
 import { Link, useLoaderData, useTransition } from "@remix-run/react";
+import invariant from "tiny-invariant";
 import YTImage from "~/components/image";
 import SearchForm, { ErrorBoundary } from "~/components/search-form";
-import { getVideos, Result } from "~/utils/search.server";
+import { Result, getVideos } from "~/utils/search.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);

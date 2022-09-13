@@ -1,9 +1,22 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# FIXME: Needs proper refactoring
+
+# Remix
+node_modules
+
+/app/styles
+/.cache
+/build
+/public/build
+.env
+
 
 # dependencies
 node_modules
 .pnp
 .pnp.js
+
+# build
+dist
 
 # testing
 coverage
@@ -32,5 +45,5 @@ yarn-error.log*
 # turbo
 .turbo
 
-# db config
-/apps/db
+#env
+.env

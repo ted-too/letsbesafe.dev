@@ -1,6 +1,6 @@
 import { RadioGroup } from "@headlessui/react";
 import clsx from "clsx";
-import { AudioFormat, availableFormats, VideoFormat } from "~/routes/video";
+import { AudioFormat, VideoFormat, availableFormats } from "~/routes/video";
 import humanFileSize from "~/utils/format-file-size";
 
 type Props = {

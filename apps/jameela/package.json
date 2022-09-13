@@ -1,10 +1,11 @@
 {
   "name": "jameela",
   "version": "0.1.0",
+  "license": "GPL-3.0-only",
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "pnpm run build:css && pnpm run build:prisma && remix build",
+    "build": "pnpm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "build:prisma": "pnpm exec prisma generate && pnpm exec prisma migrate deploy",
     "dev": "concurrently \"pnpm run dev:css\" \"remix dev -p 3005\"",
@@ -17,7 +18,6 @@
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@headlessui/react": "^1.7.0",
-    "@prisma/client": "^4.3.1",
     "@remix-run/node": "^1.7.0",
     "@remix-run/react": "^1.7.0",
     "@remix-run/serve": "^1.7.0",
@@ -32,9 +32,11 @@
     "spin-delay": "^1.2.0",
     "tiny-invariant": "^1.2.0",
     "ytdl-core": "^4.11.2",
+    "database": "*",
     "ytsr": "^3.8.0"
   },
   "devDependencies": {
+    "eslint-config-custom": "*",
     "@remix-run/dev": "^1.7.0",
     "@remix-run/eslint-config": "^1.7.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",

@@ -1,7 +1,7 @@
+import { JsonObject, db } from "database";
 import moment from "moment";
-import ytsr from "ytsr";
 import ytdl from "ytdl-core";
-import { db, JsonObject } from "~/db.server";
+import ytsr from "ytsr";
 
 type Thumbnail = {
   url: string;
