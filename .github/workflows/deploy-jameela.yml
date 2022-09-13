@@ -38,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: /apps/jameela/Dockerfile
+          file: apps/jameela/Dockerfile
           push: true
           tags: user/app:latest
 
