@@ -13,6 +13,9 @@ on:
 #     types:
 #       - completed
 
+env:
+  IMAGE_NAME: jameela
+
 jobs:
   caprover-deploy:
     runs-on: ubuntu-20.04
@@ -21,18 +24,34 @@ jobs:
       contents: read
 
     steps:
-      - name: Build Docker Image
-        uses: VaultVulp/gp-docker-action@1.2.0
-        with:
-            github-token: ${{ secrets.GITHUB_TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
-            image-name: jameela # Provide Docker image name
-            build-context: . 
-            dockerfile: ./apps/jameela/Dockerfile
+      - uses: actions/checkout@v3
 
-      - name: CapRover Deploy
-        uses: floms/action-caprover@v1
-        with:
-          host: "${{ secrets.CAPROVER_URL }}"
-          password: "${{ secrets.CAPROVER_PASSWORD }}"
-          app: jameela
-          image: ghcr.io/${{ github.repository_owner }}/jameela
+      - name: Build image
+        run: docker build . -file ./apps/jameela/Dockerfile -t $IMAGE_NAME -l "runnumber=${GITHUB_RUN_ID}"
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "master" ] && VERSION=latest
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+      # - name: CapRover Deploy
+      #   uses: floms/action-caprover@v1
+      #   with:
+      #     host: "${{ secrets.CAPROVER_URL }}"
+      #     password: "${{ secrets.CAPROVER_PASSWORD }}"
+      #     app: jameela
+      #     image: ghcr.io/${{ github.repository_owner }}/jameela
