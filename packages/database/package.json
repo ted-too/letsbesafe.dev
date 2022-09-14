@@ -10,18 +10,16 @@
     "prisma/**"
   ],
   "scripts": {
+    "dev": "tsup --watch",
+    "start:prod": "pnpm run migrate:deploy && pnpm run generate",
     "build": "tsup",
     "clean": "rimraf .turbo node_modules dist",
-    "db-deploy": "prisma migrate deploy",
-    "db:migrate:dev": "prisma migrate dev",
-    "db:push": "prisma db push",
-    "db:seed": "tsx src/seed.ts",
-    "dev": "tsup --watch",
-    "format": "prisma format",
-    "generate": "prisma generate",
     "lint": "eslint ./src/* --fix",
+    "migrate:deploy": "prisma migrate deploy",
+    "generate": "prisma generate",
     "prebuild": "pnpm run generate",
     "predev": "pnpm run generate",
+    "format": "prisma format",
     "studio": "prisma studio"
   },
   "dependencies": {

@@ -5,9 +5,6 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "build/**", "public/build/**"]
     },
-    "db-deploy": {
-      "outputs": []
-    },
     "dev": {
       "cache": false
     },

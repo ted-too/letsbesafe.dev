@@ -11,9 +11,8 @@
     "dev": "concurrently \"pnpm run dev:css\" \"remix dev -p 3005\"",
     "prisma:generate": "pnpm exec prisma generate",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
-    "deploy": "fly deploy --remote-only",
     "start": "remix-serve build",
-    "start:prod": "pnpm exec prisma migrate deploy && pnpm run start"
+    "start:prod": "cd ./node_modules/database && pnpm run start:prod && cd ../../ && pnpm run start"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",

@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    hostname: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  jameela:
+    image: ghcr.io/ted-too/jameela:main
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    environment:
+      SESSION_SECRET: $SESSION_SECRET
+      DATABASE_URL: postgresql://postgres:$POSTGRES_PASSWORD@db:5432/Todo?schema=public
+
+volumes:
+  postgres-data:
