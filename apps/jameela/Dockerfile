@@ -1,50 +1,54 @@
-# turbo prune for pnpm still inop
-# Image size could be optimized but i'm too tired rn tbh
-# TODO: Update and implement turbo prune once available
-# useful: https://github.com/vercel/turborepo/issues/534#issuecomment-1241495163
-# original example: https://github.com/vercel/turborepo/blob/main/examples/with-docker/apps/web/Dockerfile
+# Current image size at 734MB
+# Added turbo prune ✅
+# Attempts to reduce the image size have prooved futile.
+# Based on example https://github.com/vercel/turborepo/issues/1941#issuecomment-1246330480
 
-FROM node:18-alpine as base
-RUN apk add --no-cache libc6-compat && corepack enable
-# ENV NODE_ENV production
+# 1. Generate a sparse/partial monorepo with a pruned lockfile for a target workspace
+FROM node:18-alpine as deps
+RUN corepack enable
 
-# build with dev deps
-FROM base as builder
+WORKDIR /app
+COPY . .
+
+# will remove `turbo@1.4.7-canary.0` to `turbo` after stable release of 1.4.7
+RUN pnpm dlx turbo@1.4.7-canary.0 prune --scope=jameela --docker
+
+# 2. Rebuild the source code only when needed
+FROM node:18-alpine as builder
+RUN corepack enable
 WORKDIR /app
 
-COPY ./packages /app/packages
-COPY ./apps/jameela /app/apps/jameela
+COPY .gitignore .gitignore
+COPY --from=deps /app/out/json/ .
+COPY --from=deps /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=deps /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
-# Copy clean root files to root folder
-COPY ./turbo.json /app/turbo.json
-COPY ./.npmrc /app/.npmrc
-# Add lockfile and package.json's of isolated subworkspace
-COPY ./package.json /app/package.json
-COPY ./pnpm-lock.yaml /app/pnpm-lock.yaml
-COPY ./pnpm-workspace.yaml /app/pnpm-workspace.yaml
+RUN pnpm install
 
-# Install deps, build, finally prune with pnpm 
-RUN pnpm install && pnpm turbo run build --filter=jameela... && pnpm --filter jameela --prod deploy pruned && pnpm --filter database deploy pruned-db
+COPY --from=deps /app/out/full/ .
+COPY turbo.json turbo.json
+RUN pnpm turbo run build --filter=jameela...
 
-WORKDIR /app/pruned-db
-RUN pnpm run generate
-
-# using prod deps except prisma
-FROM base as runner
+# 3. Production image, copy all the files and run next
+FROM node:18-alpine as runner
+RUN corepack enable
 WORKDIR /app
-COPY --from=builder /app/pruned/package.json .
-COPY --from=builder /app/pruned/build ./build
-COPY --from=builder /app/pruned/public ./public
-COPY --from=builder /app/pruned/node_modules ./node_modules
-COPY --from=builder /app/pruned-db ./node_modules/database
 
-# Don't run production as root
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S remix -u 1001
+COPY --from=builder /app .
+# Attempts to copy only required build files didn't work
+# this is because of remix's questionable build ideology
+# COPY --from=builder /app/apps/jameela/package.json package.json
+# COPY --from=builder /app/apps/jameela/public public
+# COPY --from=builder /app/apps/jameela/build build
 
-USER remix
+# Have to use root because of prisma generate and pnpm
+# USER remix
+# RUN addgroup -g 1001 -S nodejs
+# RUN adduser -S remix -u 1001
 
 EXPOSE 3000
 ENV PORT 3000
 
-CMD ["pnpm", "run", "start:prod"]
+# TODO: Take advantage of turbo pipelines
+WORKDIR /app/apps/jameela
+CMD ["pnpm", "run", "start"]

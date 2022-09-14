@@ -11,8 +11,7 @@
     "dev": "concurrently \"pnpm run dev:css\" \"remix dev -p 3005\"",
     "prisma:generate": "pnpm exec prisma generate",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
-    "start": "remix-serve build",
-    "start:prod": "cd ./node_modules/database && pnpm run start:prod && cd ../../ && pnpm run start"
+    "start": "remix-serve build"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
@@ -45,7 +44,7 @@
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.8",
     "concurrently": "^7.3.0",
-    "eslint": "^8.20.0",
+    "eslint": "^8.23.0",
     "postcss": "^8.4.16",
     "prisma": "^4.3.1",
     "tailwindcss": "^3.1.8",

@@ -11,13 +11,11 @@
   ],
   "scripts": {
     "dev": "tsup --watch",
-    "start:prod": "pnpm run migrate:deploy && pnpm run generate",
-    "build": "tsup",
+    "build": "pnpm run generate && tsup",
     "clean": "rimraf .turbo node_modules dist",
     "lint": "eslint ./src/* --fix",
-    "migrate:deploy": "prisma migrate deploy",
+    "deploy": "prisma migrate deploy",
     "generate": "prisma generate",
-    "prebuild": "pnpm run generate",
     "predev": "pnpm run generate",
     "format": "prisma format",
     "studio": "prisma studio"
@@ -28,7 +26,7 @@
   "devDependencies": {
     "eslint-config-custom": "*",
     "@types/node": "^18.7.16",
-    "eslint": "^8.20.0",
+    "eslint": "^8.23.0",
     "prisma": "^4.3.1",
     "rimraf": "^3.0.2",
     "tsup": "^5.11.13",

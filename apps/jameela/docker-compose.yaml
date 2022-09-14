@@ -11,7 +11,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
-  jameela:
+  site:
     image: ghcr.io/ted-too/jameela:main
     restart: unless-stopped
     depends_on:
@@ -20,7 +20,7 @@ services:
       - "3000:3000"
     environment:
       SESSION_SECRET: $SESSION_SECRET
-      DATABASE_URL: postgresql://postgres:$POSTGRES_PASSWORD@db:5432/Todo?schema=public
+      DATABASE_URL: postgresql://postgres:$POSTGRES_PASSWORD@db:5432/jameela
 
 volumes:
   postgres-data:

@@ -2,14 +2,37 @@
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", "build/**", "public/build/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        "build/**",
+        "public/build/**"
+      ]
     },
     "dev": {
       "cache": false
     },
     "lint": {
       "outputs": []
+    },
+    "deploy": {
+      "dependsOn": [
+        "build"
+      ],
+      "outputs": []
+    },
+    "jameela#deploy": {
+      "dependsOn": [
+        "database#deploy"
+      ],
+      "outputs": []
+    },
+    "start": {
+      "dependsOn": [
+        "deploy"
+      ]
     }
   }
 }
