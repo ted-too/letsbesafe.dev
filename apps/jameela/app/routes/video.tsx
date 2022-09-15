@@ -1,13 +1,11 @@
-import { ActionFunction, LoaderFunction, json } from "@remix-run/node";
-import { Link, useFetcher, useLoaderData, useNavigate, useSubmit, useTransition } from "@remix-run/react";
-import { useEffect, useRef, useState } from "react";
+import { json, LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { useEffect, useState } from "react";
 import invariant from "tiny-invariant";
-import ytdl from "ytdl-core";
 import FormatSelector from "~/components/format-selector";
 import YTImage from "~/components/image";
-import { RadioInput } from "~/components/misc";
 import SearchForm, { ErrorBoundary } from "~/components/search-form";
-import { DetailedResult, Result, getVideoById } from "~/utils/search.server";
+import { DetailedResult, getVideoById } from "~/utils/search.server";
 
 export type AudioFormat = {
   format: "mp3";
@@ -60,14 +58,16 @@ export default function VideoPage() {
     <>
       <SearchForm />
       {!result ? (
-        <span className="font-semibold text-xl mx-auto">404: Video not found</span>
+        <span className="mx-auto text-xl font-semibold">404: Video not found</span>
       ) : (
-        <div className="flex justify-between w-full max-w-4xl mx-auto mb-16">
-          <div className="flex flex-col space-y-4 w-80 rounded-md">
+        <div className="flex flex-col items-center w-full max-w-[22rem] sm:max-w-[26rem] lg:max-w-4xl mx-auto mb-16 space-y-8 lg:space-y-0 lg:items-start lg:justify-between lg:flex-row">
+          <div className="flex flex-col w-full space-y-4 rounded-md lg:w-80">
             <YTImage src={result.thumbnail.url || "/no-image.png"} />
-            <span className="text-lg text-normal font-semibold line-clamp-3">{result.title}</span>
+            <span className="text-lg font-semibold text-normal line-clamp-3">{result.title}</span>
           </div>
-          <FormatSelector duration={result.duration} selected={format} setSelected={setFormat} />
+          <div className="w-full sm:max-w-[26rem]">
+            <FormatSelector duration={result.duration} selected={format} setSelected={setFormat} />
+          </div>
         </div>
       )}
     </>

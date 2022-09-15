@@ -1,32 +1,24 @@
-import { Theme, isTheme } from "./theme-provider";
-import { createCookieSessionStorage } from "@remix-run/node";
+import { createCookie } from "@remix-run/node";
 
-const sessionSecret = process.env.SESSION_SECRET;
-if (!sessionSecret) {
-  throw new Error("SESSION_SECRET must be set");
+export enum Theme {
+  Light = "light",
+  Dark = "dark",
 }
 
-const themeStorage = createCookieSessionStorage({
-  cookie: {
-    name: "theme",
-    secure: true,
-    secrets: [sessionSecret],
-    sameSite: "lax",
-    path: "/",
-    httpOnly: true,
-  },
-});
+// Create a cookie to track color scheme state
+export let colorSchemeCookie = createCookie("color-scheme");
 
-async function getThemeSession(request: Request) {
-  const session = await themeStorage.getSession(request.headers.get("Cookie"));
-  return {
-    getTheme: () => {
-      const themeValue = session.get("theme");
-      return isTheme(themeValue) ? themeValue : null;
-    },
-    setTheme: (theme: Theme) => session.set("theme", theme),
-    commit: () => themeStorage.commitSession(session),
-  };
-}
+// Helper function to get the value of the color scheme cookie
+export const getColorSchemeToken = async (request: Request) =>
+  await colorSchemeCookie.parse(request.headers.get("Cookie"));
 
-export { getThemeSession };
+export const getColorScheme = async (request: Request) => {
+  // Manually selected theme
+  const userSelectedColorScheme = await getColorSchemeToken(request);
+  // System preferred color scheme header
+  const systemPreferredColorScheme = request.headers.get("Sec-CH-Prefers-Color-Scheme");
+
+  // Return the manually selected theme
+  // or system preferred theme or default theme
+  return userSelectedColorScheme ?? systemPreferredColorScheme ?? Theme.Light;
+};

@@ -2,9 +2,7 @@ import Layout from "./components/layout";
 import { LoadingSpinner } from "./components/misc";
 import Toast from "./components/toast";
 import styles from "./styles/app.css";
-import type { Theme } from "./utils/theme-provider";
-import { ThemeProvider, useTheme } from "./utils/theme-provider";
-import { getThemeSession } from "./utils/theme.server";
+import { Theme, getColorScheme } from "./utils/theme.server";
 import type { HeadersFunction, LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
@@ -55,15 +53,9 @@ export type LoaderData = {
   theme: Theme | null;
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const themeSession = await getThemeSession(request);
-
-  const data: LoaderData = {
-    theme: themeSession.getTheme(),
-  };
-
-  return data;
-};
+export const loader: LoaderFunction = async ({ request }) => ({
+  theme: await getColorScheme(request),
+});
 
 let firstRender = true;
 
@@ -93,7 +85,7 @@ function PageLoadingMessage() {
 
   return (
     <Toast position="bottom-right" visible={showLoader}>
-      <div className="flex space-x-8 w-64">
+      <div className="flex w-64 space-x-8">
         <LoadingSpinner className="w-12 h-auto" />
         <div className="flex flex-col">
           <span className="text-xl font-semibold">loading</span>
@@ -105,7 +97,7 @@ function PageLoadingMessage() {
 }
 
 function App() {
-  const [theme] = useTheme();
+  const { theme } = useLoaderData<LoaderData>();
 
   return (
     <html className={clsx(theme)} lang="en">
@@ -117,7 +109,7 @@ function App() {
       <body>
         <Toast queryStringKey="message" delay={0.3} />
         <PageLoadingMessage />
-        <Layout>
+        <Layout theme={theme}>
           <Outlet />
         </Layout>
         <ScrollRestoration />
@@ -131,9 +123,5 @@ function App() {
 export default function AppWithProviders() {
   const data = useLoaderData<LoaderData>();
 
-  return (
-    <ThemeProvider specifiedTheme={data.theme}>
-      <App />
-    </ThemeProvider>
-  );
+  return <App />;
 }

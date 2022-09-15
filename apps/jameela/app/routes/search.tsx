@@ -17,21 +17,20 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function SearchPage() {
   const results = useLoaderData<Result[]>();
-  const { state } = useTransition();
   return (
     <>
       <SearchForm
         children={
-          <div className="grid grid-cols-3 gap-6 mt-6 max-w-5xl mx-auto mb-16">
+          <div className="grid items-start grid-cols-1 gap-6 mx-auto mt-6 mb-16 justify-items-center sm:grid-cols-2 xl:grid-cols-3 sm:max-w-xl xl:max-w-5xl">
             {results &&
               results.map(({ id, thumbnail, title }) => (
                 <Link
                   to={`/video?src=yt&id=${id}`}
-                  className="flex flex-col space-y-4 w-80 rounded-md transition-all focus-ring"
+                  className="flex flex-col space-y-4 transition-all rounded-md w-80 sm:w-64 xl:w-80 focus-ring"
                   key={id}
                 >
                   <YTImage src={thumbnail.url || "/no-image.png"} />
-                  <span className="text-lg text-normal font-semibold line-clamp-3">{title}</span>
+                  <span className="text-lg font-semibold text-normal line-clamp-3">{title}</span>
                 </Link>
               ))}
           </div>

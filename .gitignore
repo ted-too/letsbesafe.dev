@@ -2,6 +2,7 @@
 
 # Remix
 node_modules
+.cache
 
 /app/styles
 /.cache
