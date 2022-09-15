@@ -39,7 +39,7 @@ export default function Layout({ theme, children, className }: Props) {
               <span
                 className={clsx(
                   "absolute top-0 bottom-0 left-0 right-0 m-auto transition-transform duration-300",
-                  theme == Theme.Light && "translate-y-6"
+                  theme == 'light' && "translate-y-6"
                 )}
               >
                 <Moon size={16} />
@@ -47,7 +47,7 @@ export default function Layout({ theme, children, className }: Props) {
               <span
                 className={clsx(
                   "absolute top-0 bottom-0 left-0 right-0 m-auto transition-transform duration-300",
-                  theme == Theme.Dark && "-translate-y-6"
+                  theme == 'dark' && "-translate-y-6"
                 )}
               >
                 <Sun1 size={16} />
