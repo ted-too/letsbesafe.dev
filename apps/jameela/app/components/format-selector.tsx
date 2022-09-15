@@ -41,7 +41,7 @@ export default function FormatSelector({ duration, selected: format, setSelected
     <RadioGroup value={format} onChange={setFormat}>
       <RadioGroup.Label className="sr-only">Choose a format</RadioGroup.Label>
       <div className="flex flex-col space-y-2">
-        <span className="pl-6 mb-2 text-xl font-semibold">Audio</span>
+        <span className="pl-6 mb-2 text-xl font-semibold text-normal">Audio</span>
         {audio.map((format, i) => (
           <RadioGroup.Option
             key={`audio-format-${i}`}
@@ -59,7 +59,7 @@ export default function FormatSelector({ duration, selected: format, setSelected
         ))}
       </div>
       <div className="flex flex-col mt-8 space-y-2">
-        <span className="pl-6 mb-2 text-xl font-semibold">Video</span>
+        <span className="pl-6 mb-2 text-xl font-semibold text-normal">Video</span>
         {video.map((format, i) => (
           <RadioGroup.Option
             key={`video-format-${i}`}

@@ -2,14 +2,10 @@ import { availableFormats } from "../video";
 import { path as ffmpegPath } from "@ffmpeg-installer/ffmpeg";
 import { ActionFunction, LoaderFunction, Response, json } from "@remix-run/node";
 import cp from "child_process";
-import ffmpeg from "fluent-ffmpeg";
 import fs from "fs";
 import { PassThrough } from "stream";
 import invariant from "tiny-invariant";
 import ytdl from "ytdl-core";
-import { VideoFormat } from "~/utils/download.server";
-
-ffmpeg.setFfmpegPath(ffmpegPath);
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -28,9 +24,45 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   if (type == "audio") {
     const stream = ytdl(id, { quality: "highestaudio" });
-    const passThrough = new PassThrough();
-    ffmpeg(stream).format(format).audioBitrate(parseInt(quality)).pipe(passThrough, { end: true });
-    return new Response(passThrough, {
+    const ffmpegProcess = cp.spawn(
+      ffmpegPath,
+      [
+        // Remove ffmpeg's console spamming
+        "-loglevel",
+        "0",
+        "-hide_banner",
+        // Set input
+        "-i",
+        "pipe:3",
+        // Set codec
+        "-acodec",
+        "libmp3lame",
+        // Set audioBitrate
+        "-b:a",
+        `${quality}k`,
+        // Define output container
+        "-f",
+        format,
+        "pipe:4",
+      ],
+      {
+        windowsHide: true,
+        stdio: [
+          /* Standard: stdin, stdout, stderr */
+          "inherit",
+          "inherit",
+          "inherit",
+          /* Custom: pipe:3, pipe:4 */
+          "pipe",
+          "pipe",
+        ],
+      }
+    );
+    const audiooutput = new PassThrough();
+    stream.pipe(ffmpegProcess.stdio[3] as any);
+    (ffmpegProcess as any).stdio[4].pipe(audiooutput, { end: true });
+
+    return new Response(audiooutput, {
       headers: {
         "Content-Disposition": `attachment; filename=${decodeURIComponent(title)}.${format}`,
       },

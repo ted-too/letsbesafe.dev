@@ -29,31 +29,32 @@ export default function Layout({ theme, children, className }: Props) {
           [jah-mee-laa] – ‘beautiful’ <br /> swahili
         </p>
         <div className="flex mt-4 space-x-3 text-gray-900">
-          <IconButton
-            type="submit"
-            name="themeSwitcher"
-            aria-label="Change theme"
-            onClick={(e) => fetcher.submit(null, { action: "/action/change-theme", method: "post" })}
-          >
-            <div className="relative w-4 h-4 overflow-hidden">
-              <span
-                className={clsx(
-                  "absolute top-0 bottom-0 left-0 right-0 m-auto transition-transform duration-300",
-                  theme == 'light' && "translate-y-6"
-                )}
-              >
-                <Moon size={16} />
-              </span>
-              <span
-                className={clsx(
-                  "absolute top-0 bottom-0 left-0 right-0 m-auto transition-transform duration-300",
-                  theme == 'dark' && "-translate-y-6"
-                )}
-              >
-                <Sun1 size={16} />
-              </span>
-            </div>
-          </IconButton>
+          <fetcher.Form action="/action/change-theme" method="post">
+            <IconButton
+              type="submit"
+              name="themeSwitcher"
+              aria-label="Change theme"
+            >
+              <div className="relative w-4 h-4 overflow-hidden">
+                <span
+                  className={clsx(
+                    "absolute top-0 bottom-0 left-0 right-0 m-auto transition-transform duration-300",
+                    theme == 'light' && "translate-y-6"
+                  )}
+                >
+                  <Moon size={16} />
+                </span>
+                <span
+                  className={clsx(
+                    "absolute top-0 bottom-0 left-0 right-0 m-auto transition-transform duration-300",
+                    theme == 'dark' && "-translate-y-6"
+                  )}
+                >
+                  <Sun1 size={16} />
+                </span>
+              </div>
+            </IconButton>
+          </fetcher.Form>
         </div>
       </header>
       <main
@@ -80,9 +81,11 @@ export default function Layout({ theme, children, className }: Props) {
               </div>
               <p className="text-lg text-light">Because it doesn’t hurt to be safe in today’s day and age.</p>
               <div className="flex space-x-4 text-normal">
-                <IconButton aria-label="Github link" variant="transparent">
-                  <GithubIcon className="w-auto h-5" />
-                </IconButton>
+                <a href="https://github.com/ted-too/letsbesafe.dev" target='_blank'>
+                  <IconButton aria-label="Github link" variant="transparent">
+                    <GithubIcon className="w-auto h-5" />
+                  </IconButton>
+                </a>
               </div>
             </div>
             <nav className="flex flex-col w-48 col-span-full sm:col-span-1">
@@ -102,6 +105,7 @@ export default function Layout({ theme, children, className }: Props) {
               <p className="mt-5 text-lg text-light">
                 By using this service you assume all liabilities in the event of a dispute by the content owner(s).
               </p>
+              <a href="https://github.com/ted-too/letsbesafe.dev/issues" target='_blank' className="mt-4 font-light text-pink-500 hover:underline w-max">Found a bug?</a>
             </div>
           </div>
           <span className="text-sm font-light text-light">created for educational use :)</span>
