@@ -1,0 +1,19 @@
+---
+import SearchPage from "../../components/search-page";
+import Layout from "../../layouts/Layout.astro";
+import getTheme from "../../utils/getTheme";
+import YouTube from "youtube-sr";
+import type { SearchResult } from "../../types";
+
+let results: SearchResult[] = [];
+const searchTerm = Astro.params.query?.toString() || "";
+const ytVids = await YouTube.search(searchTerm, { limit: 9, type: "video" });
+ytVids.forEach(({ thumbnail, title, id, url }) => {
+  results.push({ platform: "YT", thumbnail, title: title!, id: id!, url });
+});
+const theme = getTheme(Astro);
+---
+
+<Layout theme={theme}>
+  <SearchPage searchResults={results} client:visible />
+</Layout>

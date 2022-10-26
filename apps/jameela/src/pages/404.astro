@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import getTheme from "../utils/getTheme";
+
+const theme = getTheme(Astro);
+---
+
+<Layout theme={theme}>
+  <span class="mt-40 text-3xl font-black">404</span>
+  <span class="mt-4 text-lg font-light">Route not found</span>
+</Layout>
