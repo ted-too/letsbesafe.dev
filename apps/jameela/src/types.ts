@@ -17,6 +17,7 @@ export interface SearchResult {
 
 export type AudioFormat = {
   itag: number;
+  container: string;
   bitrate: number;
   duration: number;
   size: number;
@@ -24,6 +25,8 @@ export type AudioFormat = {
 
 export type VideoFormat = {
   itag: number;
+  noAudio: boolean;
+  container: string;
   audioItag: number;
   quality: number;
   duration: number;

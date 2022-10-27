@@ -5,8 +5,10 @@
   "license": "GPL-3.0-only",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "watch:astro": "chokidar --initial \"src/**\" -c \"pnpm build\"",
+    "watch:fastify": "chokidar --initial \"*.js\" -c \"pnpm exec kill-port 3000 && pnpm start\"",
+    "dev": "concurrently \"pnpm watch:astro\" \"pnpm watch:fastify\"",
+    "start": "node server.js",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -15,10 +17,11 @@
     "@astrojs/node": "^2.0.1",
     "@astrojs/solid-js": "^1.2.1",
     "@astrojs/tailwind": "^2.1.1",
+    "@fastify/middie": "^8.0.0",
+    "@fastify/static": "^6.5.0",
     "astro": "^1.5.2",
     "clsx": "^1.2.1",
-    "ffmpeg-static": "^5.1.0",
-    "fluent-ffmpeg": "^2.1.2",
+    "fastify": "^4.9.2",
     "solid-js": "^1.4.3",
     "tailwindcss": "^3.0.24",
     "tiny-invariant": "^1.2.0",
@@ -27,7 +30,9 @@
     "ytdl-core": "^4.11.2"
   },
   "devDependencies": {
-    "@types/fluent-ffmpeg": "^2.1.20",
-    "@types/node": "^18.7.16"
+    "@types/node": "^18.7.16",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^7.3.0",
+    "kill-port": "^2.0.1"
   }
 }

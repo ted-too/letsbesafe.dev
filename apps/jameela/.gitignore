@@ -18,6 +18,5 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# cloudflare
-functions/\[\[path\]\].js
-.vercel
+# ytdl things
+tmp

@@ -1,23 +1,26 @@
 import type { AudioFormat, VideoFormat } from "../../types";
 import humanFileSize from "../../utils/human-file-size";
+import { InfoCircle } from "../ui-kit/iconsax";
+import ToolTip from "../ui-kit/tooltip";
 import clsx from "clsx";
 
 type Props =
   | {
       id: string;
       title: string;
+      thumbnail: string;
       type: "audio";
       data: AudioFormat;
     }
   | {
       id: string;
       title: string;
+      thumbnail: string;
       type: "video";
       data: VideoFormat;
     };
 
-export default function Format({ type, id, title, data }: Props) {
-  const format = type === "audio" ? "mp3" : "mp4";
+export default function Format({ type, id, thumbnail, title, data }: Props) {
   const quality = type === "audio" ? `${data.bitrate}kbps` : `${data.quality}p`;
 
   const handleDownload = () => {
@@ -26,12 +29,14 @@ export default function Format({ type, id, title, data }: Props) {
     params.push("platform=yt");
     params.push(`quality=${type === "audio" ? data.bitrate : data.quality}`);
     params.push(`title=${encodeURIComponent(title)}`);
+    params.push(`thumbnail=${encodeURIComponent(thumbnail)}`);
     params.push(`format=${type}`);
     params.push(`itag=${data.itag}`);
     params.push(`size=${data.size}`);
     if (type === "video") params.push(`audioItag=${data.audioItag}`);
     window.open(`/api/download?${params.join("&")}`, "_blank");
   };
+  console.log(type === "video" && data.noAudio);
   return (
     <button
       onClick={handleDownload}
@@ -42,9 +47,16 @@ export default function Format({ type, id, title, data }: Props) {
       )}
     >
       <span class="sr-only">
-        {format} {quality}
+        {data.container} {quality}
       </span>
-      <span class="text-lg font-semibold">{format}</span>
+      <div class="flex items-center space-x-3">
+        <span class="text-lg font-semibold">{data.container}</span>
+        {type === "video" && data.noAudio && (
+          <ToolTip label="no audio">
+            <InfoCircle size={16} />
+          </ToolTip>
+        )}
+      </div>
       <div class="flex items-center space-x-2 text-sm font-light">
         <span>{humanFileSize(data.size)}</span>
         <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">

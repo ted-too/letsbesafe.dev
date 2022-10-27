@@ -5,6 +5,7 @@ import { LoadingSpinner } from "../ui-kit/loaders";
 import Format from "./formats";
 import { createResource } from "solid-js";
 import type { Video } from "youtube-sr";
+import { InfoCircle } from "../ui-kit/iconsax";
 
 type Props = {
   data: Video;
@@ -34,14 +35,30 @@ export default function VideoPage({ data }: Props) {
               <div class="flex flex-col space-y-2">
                 <span class="pl-6 mb-2 text-xl font-semibold text-normal">Audio</span>
                 {formats()?.audio.map((format) => (
-                  <Format type="audio" data={format} id={data.id!} title={data.title!} />
+                  <Format
+                    type="audio"
+                    data={format}
+                    id={data.id!}
+                    title={data.title!}
+                    thumbnail={data.thumbnail?.url!}
+                  />
                 ))}
               </div>
               <div class="flex flex-col mt-8 space-y-2">
                 <span class="pl-6 mb-2 text-xl font-semibold text-normal">Video</span>
                 {formats()?.video.map((format) => (
-                  <Format type="video" data={format} id={data.id!} title={data.title!} />
+                  <Format
+                    type="video"
+                    data={format}
+                    id={data.id!}
+                    title={data.title!}
+                    thumbnail={data.thumbnail?.url!}
+                  />
                 ))}
+                <div class="flex items-center space-x-1 mt-4">
+                  <InfoCircle size={16} />
+                  <span class="text-sm">- no audio</span>
+                </div>
               </div>
             </>
           )}

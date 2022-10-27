@@ -18,7 +18,7 @@ module.exports = {
         900: "rgba(255,255,255,0.9)",
       },
       dark: {
-        DEFAULT: "#030303",
+        DEFAULT: "#1F1F1F",
         50: "#B8B8B8",
         100: "#AEAEAE",
         200: "#999999",
