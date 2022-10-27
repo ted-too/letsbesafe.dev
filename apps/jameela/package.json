@@ -5,18 +5,16 @@
   "license": "GPL-3.0-only",
   "private": true,
   "scripts": {
-    "watch:astro": "chokidar --initial \"src/**\" -c \"pnpm build\"",
-    "watch:fastify": "chokidar --initial \"*.js\" -c \"pnpm exec kill-port 3000 && pnpm start\"",
-    "dev": "concurrently \"pnpm watch:astro\" \"pnpm watch:fastify\"",
-    "start": "node server.js",
+    "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^2.0.1",
     "@astrojs/solid-js": "^1.2.1",
     "@astrojs/tailwind": "^2.1.1",
+    "@astrojs/vercel": "^2.3.2",
     "@fastify/middie": "^8.0.0",
     "@fastify/static": "^6.5.0",
     "astro": "^1.5.2",

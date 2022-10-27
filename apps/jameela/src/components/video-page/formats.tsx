@@ -30,13 +30,13 @@ export default function Format({ type, id, thumbnail, title, data }: Props) {
     params.push(`quality=${type === "audio" ? data.bitrate : data.quality}`);
     params.push(`title=${encodeURIComponent(title)}`);
     params.push(`thumbnail=${encodeURIComponent(thumbnail)}`);
+    params.push(`container=${data.container}`);
     params.push(`format=${type}`);
     params.push(`itag=${data.itag}`);
     params.push(`size=${data.size}`);
     if (type === "video") params.push(`audioItag=${data.audioItag}`);
     window.open(`/api/download?${params.join("&")}`, "_blank");
   };
-  console.log(type === "video" && data.noAudio);
   return (
     <button
       onClick={handleDownload}
