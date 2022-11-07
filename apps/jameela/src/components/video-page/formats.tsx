@@ -1,8 +1,8 @@
 import type { AudioFormat, VideoFormat } from "../../types";
-import humanFileSize from "../../utils/human-file-size";
-import { InfoCircle } from "../ui-kit/iconsax";
-import ToolTip from "../ui-kit/tooltip";
+import humanFileSize from "ui/utils/human-file-size";
 import clsx from "clsx";
+import { InfoCircle } from "ui/kit/iconsax";
+import ToolTip  from "ui/kit/tooltip";
 
 type Props =
   | {
