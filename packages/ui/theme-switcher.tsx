@@ -1,6 +1,6 @@
-import type { Theme } from "../../utils/getTheme";
-import { Moon, Sun1 } from "../ui-kit/iconsax";
-import { IconButton } from "../ui-kit/buttons";
+import type { Theme } from "./utils/getTheme";
+import { Moon, Sun1 } from "./kit/iconsax";
+import { IconButton } from "./kit/buttons";
 import clsx from "clsx";
 import { createSignal } from "solid-js";
 import Cookies from "universal-cookie";

@@ -1,7 +1,7 @@
 import type { SearchResult } from "../types";
 import SearchResultCard from "./search-result";
-import { Button } from "./ui-kit/buttons";
-import { TextInput } from "./ui-kit/inputs";
+import { Button } from "ui/kit/buttons";
+import { TextInput } from "ui/kit/inputs";
 import { JSXElement, createSignal } from "solid-js";
 
 type Props = { children?: JSXElement; firstSearch?: null } | { firstSearch?: boolean; children?: null };

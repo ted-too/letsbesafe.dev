@@ -1,11 +1,11 @@
 import type { Formats } from "../../types";
 import SearchForm from "../search-form";
 import SearchResultCard from "../search-result";
-import { LoadingSpinner } from "../ui-kit/loaders";
 import Format from "./formats";
 import { createResource } from "solid-js";
+import { InfoCircle } from "ui/kit/iconsax";
+import { LoadingSpinner } from "ui/kit/loaders";
 import type { Video } from "youtube-sr";
-import { InfoCircle } from "../ui-kit/iconsax";
 
 type Props = {
   data: Video;
