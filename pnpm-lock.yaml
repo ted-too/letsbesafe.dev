@@ -61,6 +61,40 @@ importers:
       eslint-config-custom: link:../../packages/eslint-config-custom
       kill-port: 2.0.1
 
+  apps/main-site:
+    specifiers:
+      '@astrojs/solid-js': ^1.2.1
+      '@astrojs/tailwind': ^2.1.1
+      '@astrojs/vercel': ^2.3.2
+      '@motionone/solid': ^10.14.3
+      astro: ^1.6.0
+      clsx: ^1.2.1
+      focus-trap: ^7.0.0
+      pocketbase: ^0.7.4
+      solid-forms: ^0.4.6
+      solid-js: ^1.4.3
+      solid-toast: ^0.3.5
+      tailwind-scrollbar-hide: ^1.1.7
+      tailwindcss: ^3.0.24
+      ui: workspace:*
+      universal-cookie: ^4.0.4
+    dependencies:
+      '@astrojs/solid-js': 1.2.1_xjhihgfh5ayj2p3qz4cavcbjua
+      '@astrojs/tailwind': 2.1.1_tailwindcss@3.1.8
+      '@astrojs/vercel': 2.3.2
+      '@motionone/solid': 10.14.3_solid-js@1.6.0
+      astro: 1.6.0
+      clsx: 1.2.1
+      focus-trap: 7.0.0
+      pocketbase: 0.7.4
+      solid-forms: 0.4.6_solid-js@1.6.0
+      solid-js: 1.6.0
+      solid-toast: 0.3.5_solid-js@1.6.0
+      tailwind-scrollbar-hide: 1.1.7
+      tailwindcss: 3.1.8_postcss@8.4.16
+      ui: link:../../packages/ui
+      universal-cookie: 4.0.4
+
   packages/eslint-config-custom:
     specifiers:
       '@typescript-eslint/parser': ^5.42.0
@@ -80,24 +114,31 @@ importers:
 
   packages/ui:
     specifiers:
+      '@motionone/solid': ^10.14.3
       astro: ^1.6.0
       clsx: ^1.2.1
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
+      focus-trap: ^7.0.0
+      solid-forms: ^0.4.6
       solid-js: ^1.4.3
+      tailwind-scrollbar-hide: ^1.1.7
       tsconfig: '*'
       typescript: ^4.5.2
       universal-cookie: ^4.0.4
-    dependencies:
-      clsx: 1.2.1
-      universal-cookie: 4.0.4
     devDependencies:
+      '@motionone/solid': 10.14.3_solid-js@1.6.0
       astro: 1.6.0
+      clsx: 1.2.1
       eslint: 7.32.0
       eslint-config-custom: link:../eslint-config-custom
+      focus-trap: 7.0.0
+      solid-forms: 0.4.6_solid-js@1.6.0
       solid-js: 1.6.0
+      tailwind-scrollbar-hide: 1.1.7
       tsconfig: 7.0.0
       typescript: 4.8.3
+      universal-cookie: 4.0.4
 
 packages:
 
@@ -769,6 +810,58 @@ packages:
       - supports-color
     dev: false
 
+  /@motionone/animation/10.14.0:
+    resolution: {integrity: sha512-h+1sdyBP8vbxEBW5gPFDnj+m2DCqdlAuf2g6Iafb1lcMnqjsRXWlPw1AXgvUMXmreyhqmPbJqoNfIKdytampRQ==}
+    dependencies:
+      '@motionone/easing': 10.14.0
+      '@motionone/types': 10.14.0
+      '@motionone/utils': 10.14.0
+      tslib: 2.4.0
+
+  /@motionone/dom/10.14.3:
+    resolution: {integrity: sha512-tese0zSBsWwxCcs9qGNyynhnQ3/n43F6XI588AUKBIfE9D5ZelzQXOzr/T0+ErsVppXJtyGHviYEnv7KHc9x7Q==}
+    dependencies:
+      '@motionone/animation': 10.14.0
+      '@motionone/generators': 10.14.0
+      '@motionone/types': 10.14.0
+      '@motionone/utils': 10.14.0
+      hey-listen: 1.0.8
+      tslib: 2.4.0
+
+  /@motionone/easing/10.14.0:
+    resolution: {integrity: sha512-2vUBdH9uWTlRbuErhcsMmt1jvMTTqvGmn9fHq8FleFDXBlHFs5jZzHJT9iw+4kR1h6a4SZQuCf72b9ji92qNYA==}
+    dependencies:
+      '@motionone/utils': 10.14.0
+      tslib: 2.4.0
+
+  /@motionone/generators/10.14.0:
+    resolution: {integrity: sha512-6kRHezoFfIjFN7pPpaxmkdZXD36tQNcyJe3nwVqwJ+ZfC0e3rFmszR8kp9DEVFs9QL/akWjuGPSLBI1tvz+Vjg==}
+    dependencies:
+      '@motionone/types': 10.14.0
+      '@motionone/utils': 10.14.0
+      tslib: 2.4.0
+
+  /@motionone/solid/10.14.3_solid-js@1.6.0:
+    resolution: {integrity: sha512-UTqyL1eNh4X7po801k/bPsHjZ2FWDOUCIL0Vs2mh7+UDrcJeteoSfMz6a4SUjEgHH3k4Q/s4ZY0ewsfpLZGS5w==}
+    peerDependencies:
+      solid-js: ^1.4.1
+    dependencies:
+      '@motionone/dom': 10.14.3
+      '@motionone/utils': 10.14.0
+      '@solid-primitives/props': 2.2.2_solid-js@1.6.0
+      solid-js: 1.6.0
+      tslib: 2.4.0
+
+  /@motionone/types/10.14.0:
+    resolution: {integrity: sha512-3bNWyYBHtVd27KncnJLhksMFQ5o2MSdk1cA/IZqsHtA9DnRM1SYgN01CTcJ8Iw8pCXF5Ocp34tyAjY7WRpOJJQ==}
+
+  /@motionone/utils/10.14.0:
+    resolution: {integrity: sha512-sLWBLPzRqkxmOTRzSaD3LFQXCPHvDzyHJ1a3VP9PRzBxyVd2pv51/gMOsdAcxQ9n+MIeGJnxzXBYplUHKj4jkw==}
+    dependencies:
+      '@motionone/types': 10.14.0
+      hey-listen: 1.0.8
+      tslib: 2.4.0
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -814,6 +907,21 @@ packages:
     dependencies:
       '@proload/core': 0.3.3
       tsm: 2.2.2
+
+  /@solid-primitives/props/2.2.2_solid-js@1.6.0:
+    resolution: {integrity: sha512-vjRRoi/z3S2ylIJKCs+mN07oxDmt2S9gPCbTqkEx8jYHnvzocpt34UQdglLoSklTE6jI37JhW3g/Cs8Qr/peHg==}
+    peerDependencies:
+      solid-js: ^1.3.0
+    dependencies:
+      '@solid-primitives/utils': 3.1.0_solid-js@1.6.0
+      solid-js: 1.6.0
+
+  /@solid-primitives/utils/3.1.0_solid-js@1.6.0:
+    resolution: {integrity: sha512-/rerChcwgFtHEgVCCBY7BXGHh7a83HcIAzR8QhXJ789geIVbBs2YxHF4UUZlG7ec00NKSfvO3+sQquN/xKQLMw==}
+    peerDependencies:
+      solid-js: ^1.5.0
+    dependencies:
+      solid-js: 1.6.0
 
   /@trivago/prettier-plugin-sort-imports/3.3.0_prettier@2.7.1:
     resolution: {integrity: sha512-1y44bVZuIN0RsS3oIiGd5k8Vm3IZXYZnp4VsP2Z/S5L9WAOw43HE2clso66M2S/dDeJ+8sKPqnHsEfh39Vjs3w==}
@@ -864,7 +972,6 @@ packages:
 
   /@types/cookie/0.3.3:
     resolution: {integrity: sha512-LKVP3cgXBT9RYj+t+9FDKwS5tdI+rPBXaNSkma7hvqy35lc7mAokC2zsqWJH0LaqIt3B962nuYI77hsJoT1gow==}
-    dev: false
 
   /@types/debug/4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
@@ -1601,7 +1708,6 @@ packages:
   /clsx/1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
-    dev: false
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -1669,7 +1775,6 @@ packages:
   /cookie/0.4.2:
     resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
     engines: {node: '>= 0.6'}
-    dev: false
 
   /cookie/0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
@@ -2834,6 +2939,11 @@ packages:
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
 
+  /focus-trap/7.0.0:
+    resolution: {integrity: sha512-uT4Bl8TwU+5vVAx/DHil/1eVS54k9unqhK/vGy2KSh7esPmqgC0koAB9J2sJ+vtj8+vmiFyGk2unLkhNLQaxoA==}
+    dependencies:
+      tabbable: 6.0.1
+
   /formdata-polyfill/4.0.10:
     resolution: {integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==}
     engines: {node: '>=12.20.0'}
@@ -3169,6 +3279,9 @@ packages:
       hast-util-parse-selector: 3.1.0
       property-information: 6.1.1
       space-separated-tokens: 2.0.1
+
+  /hey-listen/1.0.8:
+    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
 
   /html-entities/2.3.2:
     resolution: {integrity: sha512-c3Ab/url5ksaT0WyleslpBEthOzWhrjQbg75y7XUsfSzi3Dgzt0l8w5e7DylRn15MTlMMD58dTfzddNS2kcAjQ==}
@@ -4431,6 +4544,10 @@ packages:
     dependencies:
       find-up: 4.1.0
 
+  /pocketbase/0.7.4:
+    resolution: {integrity: sha512-PvBRi4hbgbiBwDjhHa9lGD/ala8dSTjKeNAsHAgsXdIo4v9RgCk2s3Zqd/4UXVBgTJHVM6F7fGOZPvvJfSNVLQ==}
+    dev: false
+
   /postcss-import/14.1.0_postcss@8.4.16:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
@@ -5001,10 +5118,26 @@ packages:
       is-fullwidth-code-point: 3.0.0
     dev: true
 
+  /solid-forms/0.4.6_solid-js@1.6.0:
+    resolution: {integrity: sha512-okinx7fuB82otu2i+JAOly3a7T7ZK6MfeQg4FFJaUNUz9uGVFbZWCiaqFm87hyxfS0+PW7nu6z/9Jw05n+CqXQ==}
+    peerDependencies:
+      solid-js: ^1.4.0
+    dependencies:
+      fast-deep-equal: 3.1.3
+      solid-js: 1.6.0
+
   /solid-js/1.6.0:
     resolution: {integrity: sha512-db5s65ErgZnBhapPx77qauzul8akHlMCvirS+Y86U4abMa3uizMVNW9ql3UxbO0yMzMGNpFJwUiOlXmJCbwVpA==}
     dependencies:
       csstype: 3.1.0
+
+  /solid-toast/0.3.5_solid-js@1.6.0:
+    resolution: {integrity: sha512-m4PX2ESex9nSwt9d9XTr3r+Kp3vjSoViDWj3gj6Xxgz21IKYODMKhACXurlZCztz56NQBnfX2m4es4I8JgXGQQ==}
+    peerDependencies:
+      solid-js: ^1.5.4
+    dependencies:
+      solid-js: 1.6.0
+    dev: false
 
   /sonic-boom/3.2.0:
     resolution: {integrity: sha512-SbbZ+Kqj/XIunvIAgUZRlqd6CGQYq71tRRbXR92Za8J/R3Yh4Av+TWENiSiEgnlwckYLyP0YZQWVfyNC0dzLaA==}
@@ -5204,6 +5337,9 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /tabbable/6.0.1:
+    resolution: {integrity: sha512-SYJSIgeyXW7EuX1ytdneO5e8jip42oHWg9xl/o3oTYhmXusZVgiA+VlPvjIN+kHii9v90AmzTZEBcsEvuAY+TA==}
+
   /table/6.8.1:
     resolution: {integrity: sha512-Y4X9zqrCftUhMeH2EptSSERdVKt/nEdijTOacGD/97EKjhQ/Qs8RTlEGABSJNNN8lac9kheH+af7yAkEWlgneA==}
     engines: {node: '>=10.0.0'}
@@ -5214,6 +5350,9 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
     dev: true
+
+  /tailwind-scrollbar-hide/1.1.7:
+    resolution: {integrity: sha512-X324n9OtpTmOMqEgDUEA/RgLrNfBF/jwJdctaPZDzB3mppxJk7TLIDmOreEDm1Bq4R9LSPu4Epf8VSdovNU+iA==}
 
   /tailwindcss/3.1.8_postcss@8.4.16:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
@@ -5531,7 +5670,6 @@ packages:
     dependencies:
       '@types/cookie': 0.3.3
       cookie: 0.4.2
-    dev: false
 
   /update-browserslist-db/1.0.7_browserslist@4.21.3:
     resolution: {integrity: sha512-iN/XYesmZ2RmmWAiI4Z5rq0YqSiv0brj9Ce9CfhNE4xIW2h+MFxcgkxIzZ+ShkFPUkjU3gQ+3oypadD3RAMtrg==}

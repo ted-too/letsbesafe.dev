@@ -10,7 +10,7 @@ export default function ToolTip({ children, label }: Props) {
     <div class="relative flex flex-col items-center group">
       {children}
       <div class="absolute bottom-0 flex-col items-center hidden mb-6 group-hover:flex">
-        <span class="relative z-10 p-2 text-xs leading-none text-inverse whitespace-nowrap bg-inverse shadow-lg">
+        <span class="relative z-10 p-2 text-xs leading-none text-normal-inverse whitespace-nowrap bg-inverse shadow-lg">
           {label}
         </span>
       </div>

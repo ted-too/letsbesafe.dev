@@ -12,7 +12,7 @@ export const IconButton = ({ children, class: clazz, variant = "default", ...pro
       class={clsx(
         "rounded-md p-2 bg-normal text-normal disabled:cursor-not-allowed",
         variant == "default" && "focus-ring focus-border",
-        variant == "transparent" && "transition-opacity hover:opacity-75 focus:opacity-75",
+        variant == "transparent" && "transition-opacity hover:opacity-75 focus:opacity-75 focus-ring",
         clazz
       )}
       onMouseDown={(e) => e.preventDefault()}
@@ -31,7 +31,7 @@ export const Button = ({ class: clazz, loading, children, ...props }: ButtonProp
   return (
     <button
       class={clsx(
-        "relative py-3 px-8 w-max rounded-md min-h-[3rem] bg-inverse text-inverse focus-ring disabled:cursor-not-allowed",
+        "relative py-3 px-8 w-max rounded-md min-h-[3rem] bg-inverse text-normal-inverse focus-ring disabled:cursor-not-allowed",
         clazz
       )}
       onMouseDown={(e) => e.preventDefault()}

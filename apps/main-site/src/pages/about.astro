@@ -1,0 +1,45 @@
+---
+import Layout from "../Layout.astro";
+import getTheme from "ui/utils/getTheme";
+import EthosCards from "../components/ethos-cards/cards";
+
+const theme = getTheme(Astro);
+---
+
+<Layout theme={theme}>
+  <div
+    class="flex flex-col items-center w-full space-y-14 sm:space-y-20 lg:space-y-32 max-w-[90vw] xs:max-w-[87vw] 2.5xl:max-w-none 2.5xl:px-12 mb-36 sm:max-w-none"
+  >
+    <div class="flex flex-col items-center space-y-3 sm:space-y-6 max-w-[60rem]">
+      <h1 class="lg:mt-4 xl:mt-[2.5rem] font-bold text-3xl lg:text-5xl xl:text-6xl text-primary">About Us</h1>
+      <p class="text-xl font-light text-center sm:text-2xl lg:text-3xl">
+        Lorem ultricies enim, vivamus scelerisque. Urna, tortor fringilla at senectus nec velit sit viverra. Feugiat
+        donec lobortis ultrices orci tempus lectus. Blandit rutrum amet ipsum risus odio tincidunt sagittis.
+      </p>
+    </div>
+    <div
+      class="flex flex-col space-y-2 sm:space-y-6 1.5xl:space-y-0 items-center 1.5xl:items-start 1.5xl:flex-row 1.5xl:justify-between w-full max-w-7xl"
+    >
+      <!-- <h2 class="text-4xl font-semibold sm:text-5xl">Why</h2> -->
+      <h2 class="text-3xl font-semibold lg:text-4xl xl:text-5xl">Why</h2>
+      <p class="max-w-5xl 1.5xl:text-left text-xl font-light text-center sm:text-2xl lg:text-3xl">
+        Venenatis diam massa dictumst maecenas vestibulum consequat. Sit dolor in amet in tincidunt aliquet diam
+        porttitor id. Lectus sit augue urna, nibh maecenas nibh non amet, lectus. Dolor a praesent interdum dictum
+        elementum quisque tristique. Turpis sed non nunc enim felis ullamcorper ut arcu pharetra. Purus non cum amet,
+        pellentesque ac et leo, eleifend elit. Aliquet aenean cursus purus in amet non imperdiet ipsum. Amet sit lectus
+        lectus vitae ultrices vulputate lectus quisque tristique. Mauris iaculis velit quis fringilla in eros urna.
+        Turpis cras non consequat, rhoncus donec. Rutrum faucibus nunc, eget a dictum. Arcu suspendisse amet at diam
+        ornare convallis vestibulum cursus.
+      </p>
+    </div>
+    <div class="flex flex-col w-full space-y-6 sm:space-y-8 max-w-7xl">
+      <div class="flex flex-col 1.5xl:items-start 1.5xl:text-left text-center items-center space-y-1">
+        <h2 class="text-3xl font-semibold lg:text-4xl xl:text-5xl">Ethos</h2>
+        <span class="text-xl font-light sm:text-2xl lg:text-3xl text-secondary">Our core values</span>
+      </div>
+      <div class="flex 1.5xl:flex-nowrap flex-wrap justify-center gap-8 select-none 2xl:justify-between">
+        <EthosCards />
+      </div>
+    </div>
+  </div>
+</Layout>
