@@ -9,6 +9,7 @@ import ShareButton from "../components/home/share-button";
 import Essentials from "../components/home/essentials.astro";
 
 const theme = getTheme(Astro);
+// TODO: Make proper essentials page
 ---
 
 <Layout theme={theme}>
@@ -65,9 +66,9 @@ const theme = getTheme(Astro);
         >
           <Essentials />
         </div>
-        <LinkButton invert={true} to="/essentials" class="mx-auto mt-16 1.5xl:mt-24 1.5xl:mx-0 dark:hover:ring-offset-[#a4c3b2]" client:visible
+        <!-- <LinkButton invert={true} to="/essentials" class="mx-auto mt-16 1.5xl:mt-24 1.5xl:mx-0 dark:hover:ring-offset-[#a4c3b2]" client:visible
           >View All</LinkButton
-        >
+        > -->
       </div>
     </div>
   </section>
