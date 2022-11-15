@@ -14,7 +14,7 @@ module.exports = {
       cwd: "apps/main-site-api",
       script: "./main-site-api",
       watch: true,
-      args: 'serve --http="127.0.0.1:4000"',
+      args: 'serve --http=127.0.0.1:4000',
     },
   ],
 };
