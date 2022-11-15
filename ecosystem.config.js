@@ -6,7 +6,7 @@ module.exports = {
       script: "pnpm",
       args: "start",
       env: {
-        "API_URL": "http://127.0.0.1:4000",
+        "PUBLIC_API_URL": "http://127.0.0.1:4000",
       }
     },
     {
