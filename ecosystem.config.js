@@ -5,12 +5,16 @@ module.exports = {
       cwd: "apps/main-site",
       script: "pnpm",
       args: "start",
+      env: {
+        "API_URL": "http://127.0.0.1:4000",
+      }
     },
     {
       name: "main-site-api",
       cwd: "apps/main-site-api",
       script: "./main-site-api",
-      args: 'serve --http="127.0.0.1:3000"',
+      watch: true,
+      args: 'serve --http="127.0.0.1:4000"',
     },
   ],
 };
