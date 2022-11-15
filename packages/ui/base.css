@@ -1,40 +1,50 @@
+/* nunito-200 - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 200;
+  src: local(""), url("/fonts/nunito-v25-latin-200.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-200.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 /* nunito-300 - latin */
 @font-face {
   font-family: "Nunito";
   font-style: normal;
   font-weight: 300;
-  src: url("/fonts/nunito-v25-latin-300.eot"); /* IE9 Compat Modes */
-  src: local(""), url("/fonts/nunito-v25-latin-300.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */ url("/fonts/nunito-v25-latin-300.woff2") format("woff2"),
-    /* Super Modern Browsers */ url("/fonts/nunito-v25-latin-300.woff") format("woff"),
-    /* Modern Browsers */ url("/fonts/nunito-v25-latin-300.ttf") format("truetype"),
-    /* Safari, Android, iOS */ url("/fonts/nunito-v25-latin-300.svg#Nunito") format("svg"); /* Legacy iOS */
+  src: local(""), url("/fonts/nunito-v25-latin-300.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-300.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
 /* nunito-regular - latin */
 @font-face {
   font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
-  src: url("/fonts/nunito-v25-latin-regular.eot"); /* IE9 Compat Modes */
-  src: local(""), url("/fonts/nunito-v25-latin-regular.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */ url("/fonts/nunito-v25-latin-regular.woff2") format("woff2"),
-    /* Super Modern Browsers */ url("/fonts/nunito-v25-latin-regular.woff") format("woff"),
-    /* Modern Browsers */ url("/fonts/nunito-v25-latin-regular.ttf") format("truetype"),
-    /* Safari, Android, iOS */ url("/fonts/nunito-v25-latin-regular.svg#Nunito") format("svg"); /* Legacy iOS */
+  src: local(""), url("/fonts/nunito-v25-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
 /* nunito-500 - latin */
 @font-face {
   font-family: "Nunito";
   font-style: normal;
   font-weight: 500;
-  src: url("/fonts/nunito-v25-latin-500.eot"); /* IE9 Compat Modes */
-  src: local(""), url("/fonts/nunito-v25-latin-500.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */ url("/fonts/nunito-v25-latin-500.woff2") format("woff2"),
-    /* Super Modern Browsers */ url("/fonts/nunito-v25-latin-500.woff") format("woff"),
-    /* Modern Browsers */ url("/fonts/nunito-v25-latin-500.ttf") format("truetype"),
-    /* Safari, Android, iOS */ url("/fonts/nunito-v25-latin-500.svg#Nunito") format("svg"); /* Legacy iOS */
+  src: local(""), url("/fonts/nunito-v25-latin-500.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-600 - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("/fonts/nunito-v25-latin-600.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-600.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-700 - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url("/fonts/nunito-v25-latin-700.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @tailwind base;
@@ -43,71 +53,70 @@
 
 @layer base {
   html {
-    @apply text-normal bg-normal;
     font-family: "Nunito", sans-serif;
+  }
+  body {
+    @apply transition-colors duration-300 text-primary bg-base;
+  }
+  button {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
 @layer utilities {
-  .bg-normal {
-    @apply bg-white dark:bg-dark;
+  .bg-base {
+    @apply bg-white dark:bg-black;
   }
-  .bg-inverse {
-    @apply bg-dark dark:bg-w-overlay-800;
+  .bg-base-inverse {
+    @apply bg-black dark:bg-white;
   }
-  .text-normal {
-    @apply dark:text-w-overlay-800 text-dark;
+  .text-primary {
+    @apply text-dark-400 dark:text-w-overlay;
   }
-  .text-inverse {
-    @apply text-white dark:text-dark;
+  .text-primary-inverse {
+    @apply text-w-overlay dark:text-dark-400;
   }
-  .text-light {
-    @apply dark:text-dark-50 text-dark-800 placeholder:dark:text-dark-400 placeholder:text-dark-300;
+  .text-secondary {
+    @apply text-dark-300 dark:text-w-overlay-600;
   }
-  .text-light-inverse {
-    @apply text-dark-50 dark:text-dark-800;
+  .text-secondary-inverse {
+    @apply text-w-overlay-600 dark:text-dark-300;
   }
-  .ring-color {
-    @apply ring-dark dark:ring-white;
-  }
-  .ring-color-inverse {
-    @apply dark:ring-dark ring-white;
+  .text-tertiary {
+    @apply text-dark-200 dark:text-w-overlay-700;
   }
   .border-primary {
-    @apply border-dark-900 dark:border-white;
+    @apply dark:border-black-300 border-dark-300
   }
   .border-secondary {
-    @apply border-dark-200 dark:border-dark-600;
+    @apply dark:border-black-500 border-dark-400
+  }
+  .border-tertiary {
+    @apply dark:border-black-700 border-dark-200
+
+  }
+  .ring-color {
+    @apply ring-black dark:ring-w-overlay-700 ring-offset-white dark:ring-offset-black;
+  }
+  .ring-color-inverse {
+    @apply ring-w-overlay-700 dark:ring-black ring-offset-black dark:ring-offset-white;
   }
   .focus-ring {
-    @apply transition duration-300 focus:outline-none focus-within:outline-none ring-color ring-offset-4 ring-offset-white focus-within:ring-2 disabled:ring-color-inverse focus-within:ring-color hover:ring-2 hover:ring-color focus:ring-2 focus:ring-color group-hover:ring-2 group-hover:ring-color group-focus:ring-2 group-focus:ring-color dark:ring-offset-dark;
+    @apply transition duration-300 focus:outline-none focus-within:outline-none ring-color ring-offset-2 disabled:ring-offset-0 focus-within:ring-1 focus-within:ring-color focus:ring-1 focus:ring-color disabled:ring-0 group-focus:ring-1 group-focus:ring-color;
   }
-  .focus-border {
-    @apply border border-secondary hover:border-primary focus:border-primary;
+  .focus-ring-inverse {
+    @apply transition duration-300 focus:outline-none focus-within:outline-none ring-color-inverse ring-offset-2 disabled:ring-offset-0 focus-within:ring-1 focus-within:ring-color-inverse focus:ring-1 focus:ring-color-inverse disabled:ring-0 group-focus:ring-1 group-focus:ring-color-inverse;
   }
-}
-
-@layer components {
-  .footer-link {
-    @apply relative text-lg transition-opacity w-max text-light hover:opacity-75 focus:outline-none;
+  .hover-ring {
+    @apply hover:ring-1 hover:ring-color group-hover:ring-1 group-hover:ring-color;
   }
-  .footer-link::before {
-    @apply bg-dark-900 dark:bg-w-overlay-700;
-    content: "";
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 1.5px;
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: top left;
-    transition: transform 0.3s ease-in-out;
+  .hover-ring-inverse {
+    @apply hover:ring-1 hover:ring-color-inverse group-hover:ring-1 group-hover:ring-color-inverse;
   }
-  .footer-link:focus::before {
-    transform: scaleX(1);
+  .no-drag {
+    -webkit-user-drag: none;
   }
-  .footer-link:hover::before {
-    transform: scaleX(1);
+  .no-scroll {
+    overflow: hidden;
   }
 }

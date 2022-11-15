@@ -3,7 +3,7 @@ import SearchForm from "../search-form";
 import SearchResultCard from "../search-result";
 import Format from "./formats";
 import { createResource } from "solid-js";
-import { InfoCircle } from "ui/kit/iconsax";
+import { InfoCircle } from "ui/iconsax";
 import { LoadingSpinner } from "ui/kit/loaders";
 import type { Video } from "youtube-sr";
 

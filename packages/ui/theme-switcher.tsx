@@ -1,13 +1,15 @@
-import type { Theme } from "./utils/getTheme";
-import { Moon, Sun1 } from "./kit/iconsax";
 import { IconButton } from "./kit/buttons";
+import { Moon, Sun1 } from "./iconsax";
+import type { Theme } from "./utils/getTheme";
 import clsx from "clsx";
 import { createSignal } from "solid-js";
 import Cookies from "universal-cookie";
 
-export default function ThemeSwitcher({ theme: initialTheme, class: clazz }: { theme: Theme; class: string }) {
+type Props = { theme: Theme; class: string; noBorder?: boolean };
+
+export default function ThemeSwitcher(props: Props) {
   const cookies = new Cookies();
-  const [theme, setTheme] = createSignal(initialTheme);
+  const [theme, setTheme] = createSignal(props.theme);
   const switchTheme = () => {
     const newTheme = theme() === "light" ? "dark" : "light";
     document.documentElement.classList.replace(theme(), newTheme);
@@ -15,8 +17,14 @@ export default function ThemeSwitcher({ theme: initialTheme, class: clazz }: { t
     cookies.set("theme", newTheme);
   };
   return (
-    <div class={clsx(clazz)}>
-      <IconButton type="submit" name="themeSwitcher" aria-label="Change theme" onClick={switchTheme}>
+    <div class={clsx(props.class)}>
+      <IconButton
+        type="submit"
+        name="themeSwitcher"
+        aria-label="Change theme"
+        variant={props.noBorder ? "transparent" : "default"}
+        onClick={switchTheme}
+      >
         <div class="relative w-4 h-4 overflow-hidden">
           <span
             class={clsx(

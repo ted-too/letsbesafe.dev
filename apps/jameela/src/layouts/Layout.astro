@@ -1,13 +1,13 @@
 ---
 import clsx from "clsx";
-import { GithubLogo, JameelaLogo, LetsBeSafeLogo } from "ui/kit/logos";
+import { JameelaLogo } from "ui/kit/logos";
 import ThemeSwitcher from "ui/theme-switcher";
-import { IconButton } from "ui/kit/buttons";
-import { PayPal } from "ui/kit/iconsax";
-import "ui/base.css";
+import Footer from "ui/layout/footer.astro";
+import "ui/base-legacy.css";
+import type { Theme } from "ui/utils/getTheme";
 
 export interface Props {
-  theme: "light" | "dark";
+  theme: Theme;
   class?: string;
 }
 
@@ -48,60 +48,7 @@ const { theme, class: clazz } = Astro.props;
       <main class={clsx("min-h-screen w-full max-w-[1536px] mx-auto px-5 sm:px-0 flex flex-col items-center", clazz)}>
         <slot />
       </main>
-      <div class="px-4 md:px-8 1.5xl:px-0 w-full border-t border-dark-50 dark:border-w-overlay-100">
-        <footer
-          class="flex flex-col w-full max-w-xs pb-10 mx-auto mt-40 space-y-32 sm:max-w-2xl md:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl md:pb-16 md:mt-48"
-        >
-          <div class="grid justify-center w-full grid-cols-6 space-y-8">
-            <div class="w-[19rem] col-span-full sm:col-span-4 xl:col-span-3 flex flex-col space-y-6">
-              <div class="flex flex-col space-y-2">
-                <span class="text-sm font-light text-light">a project by</span>
-                <a
-                  href="https://letsbesafe.dev"
-                  class="transition-all duration-300 ease-in-out w-max group text-normal hover:opacity-75 focus:opacity-75 focus:outline-none"
-                >
-                  <LetsBeSafeLogo class="w-auto h-5 mb-1" />
-                  <div
-                    class="max-w-0 group-focus:max-w-full h-[2px] rounded-full transition-all duration-500 bg-inverse"
-                  >
-                  </div>
-                </a>
-              </div>
-              <p class="text-lg text-light">Because it doesn’t hurt to be safe in today’s day and age.</p>
-              <div class="flex space-x-4 text-normal">
-                <a href="https://github.com/ted-too/letsbesafe.dev" target="_blank">
-                  <IconButton aria-label="Github link" variant="transparent" client:visible>
-                    <GithubLogo class="w-auto h-5" />
-                  </IconButton>
-                </a>
-                <a href="https://www.paypal.com/donate/?hosted_button_id=J55RS4J8V47MG" target="_blank">
-                  <IconButton aria-label="PayPal Donation link" variant="transparent" client:visible>
-                    <PayPal class="w-auto h-5" />
-                  </IconButton>
-                </a>
-              </div>
-            </div>
-            <nav class="flex flex-col w-48 col-span-full sm:col-span-1">
-              <span class="mb-5 text-lg font-semibold text-normal">General</span>
-              <a href="/" class="footer-link"> Home</a>
-              <a href="/use-terms" class="my-2 footer-link"> Terms of use</a>
-              <a href="https://letsbesafe.dev/contact" class="footer-link"> Contact</a>
-            </nav>
-            <div class="flex flex-col col-span-full sm:col-span-2 w-full max-w-[25.75rem]">
-              <span class="text-lg font-semibold text-normal">Disclaimer</span>
-              <p class="mt-5 text-lg text-light">
-                By using this service you assume all liabilities in the event of a dispute by the content owner(s).
-              </p>
-              <a
-                href="https://github.com/ted-too/letsbesafe.dev/issues"
-                target="_blank"
-                class="mt-4 font-light text-pink-500 hover:underline w-max">Found a bug?</a
-              >
-            </div>
-          </div>
-          <span class="text-sm font-light text-light">created for educational use :)</span>
-        </footer>
-      </div>
+      <Footer />
     </div>
   </body>
 </html>
