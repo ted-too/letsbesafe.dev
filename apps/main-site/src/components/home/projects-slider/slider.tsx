@@ -43,7 +43,6 @@ export default function ProjectsSlider(props: Props) {
         props.class
       )}
     >
-      {/* xs:p-8 sm:p-16 pb-20 sm:pb-24 2xl:pb-20 */}
       <div
         class="overflow-x-auto flex items-center space-x-[3.25rem] select-none scrollbar-hide cursor-pointer"
         onMouseDown={(e) => {
@@ -71,6 +70,8 @@ export default function ProjectsSlider(props: Props) {
           setScrollPercent(newPos);
         }}
         onMouseMove={handleScroll}
+        role='tablist'
+        tabindex="-1"
         ref={slider}
       >
         <a
