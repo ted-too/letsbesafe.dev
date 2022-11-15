@@ -8,9 +8,15 @@ const theme = getTheme(Astro);
 ---
 
 <Layout theme={theme}>
-  <h1 class="mb-8 lg:mt-4 xl:mt-[2.5rem] xl:mb-[4.5rem] text-4xl font-bold sm:text-5xl xl:text-6xl text-primary">
-    Projects
-  </h1>
+  <div class="flex flex-col items-center space-y-1 sm:space-y-3 mb-8 lg:mt-4 xl:mt-[2.5rem] xl:mb-[4.5rem]">
+    <h1 class="text-4xl font-bold sm:text-5xl xl:text-6xl text-primary">
+      Projects
+    </h1>
+    <span class="text-md sm:text-lg xl:text-xl">
+      Want to
+      <a href="/about" class="underline text-melon-500">learn more</a> about us?
+    </span>
+  </div>
   <div
     class="flex flex-col items-center w-full max-w-[90vw] xs:max-w-[87vw] 2.5xl:max-w-none 2.5xl:px-12 sm:max-w-none text-dark-300"
   >

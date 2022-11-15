@@ -7,6 +7,7 @@ import VoteIdeas from "../../components/vote/idea";
 
 const theme = getTheme(Astro);
 const ideas = await api.records.getFullList("new_ideas")
+console.log(ideas)
 ---
 
 <Layout theme={theme}>
