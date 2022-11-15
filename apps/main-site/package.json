@@ -12,11 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^3.0.0",
     "@astrojs/solid-js": "^1.2.1",
     "@astrojs/tailwind": "^2.1.1",
-    "@astrojs/vercel": "^2.3.2",
     "@motionone/solid": "^10.14.3",
-    "astro": "^1.6.0",
+    "astro": "^1.6.4",
     "clsx": "^1.2.1",
     "focus-trap": "^7.0.0",
     "pocketbase": "^0.7.4",
