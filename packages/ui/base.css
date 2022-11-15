@@ -1,0 +1,122 @@
+/* nunito-200 - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 200;
+  src: local(""), url("/fonts/nunito-v25-latin-200.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-200.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-300 - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 300;
+  src: local(""), url("/fonts/nunito-v25-latin-300.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-300.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-regular - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("/fonts/nunito-v25-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-500 - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url("/fonts/nunito-v25-latin-500.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-600 - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("/fonts/nunito-v25-latin-600.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-600.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* nunito-700 - latin */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url("/fonts/nunito-v25-latin-700.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Nunito", sans-serif;
+  }
+  body {
+    @apply transition-colors duration-300 text-primary bg-base;
+  }
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .bg-base {
+    @apply bg-white dark:bg-black;
+  }
+  .bg-base-inverse {
+    @apply bg-black dark:bg-white;
+  }
+  .text-primary {
+    @apply text-dark-400 dark:text-w-overlay;
+  }
+  .text-primary-inverse {
+    @apply text-w-overlay dark:text-dark-400;
+  }
+  .text-secondary {
+    @apply text-dark-300 dark:text-w-overlay-600;
+  }
+  .text-secondary-inverse {
+    @apply text-w-overlay-600 dark:text-dark-300;
+  }
+  .text-tertiary {
+    @apply text-dark-200 dark:text-w-overlay-700;
+  }
+  .border-primary {
+    @apply dark:border-black-300 border-dark-300
+  }
+  .border-secondary {
+    @apply dark:border-black-500 border-dark-400
+  }
+  .border-tertiary {
+    @apply dark:border-black-700 border-dark-200
+
+  }
+  .ring-color {
+    @apply ring-black dark:ring-w-overlay-700 ring-offset-white dark:ring-offset-black;
+  }
+  .ring-color-inverse {
+    @apply ring-w-overlay-700 dark:ring-black ring-offset-black dark:ring-offset-white;
+  }
+  .focus-ring {
+    @apply transition duration-300 focus:outline-none focus-within:outline-none ring-color ring-offset-2 disabled:ring-offset-0 focus-within:ring-1 focus-within:ring-color focus:ring-1 focus:ring-color disabled:ring-0 group-focus:ring-1 group-focus:ring-color;
+  }
+  .focus-ring-inverse {
+    @apply transition duration-300 focus:outline-none focus-within:outline-none ring-color-inverse ring-offset-2 disabled:ring-offset-0 focus-within:ring-1 focus-within:ring-color-inverse focus:ring-1 focus:ring-color-inverse disabled:ring-0 group-focus:ring-1 group-focus:ring-color-inverse;
+  }
+  .hover-ring {
+    @apply hover:ring-1 hover:ring-color group-hover:ring-1 group-hover:ring-color;
+  }
+  .hover-ring-inverse {
+    @apply hover:ring-1 hover:ring-color-inverse group-hover:ring-1 group-hover:ring-color-inverse;
+  }
+  .no-drag {
+    -webkit-user-drag: none;
+  }
+  .no-scroll {
+    overflow: hidden;
+  }
+}

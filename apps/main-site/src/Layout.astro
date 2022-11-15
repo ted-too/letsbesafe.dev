@@ -1,0 +1,79 @@
+---
+import clsx from "clsx";
+import { LetsBeSafeLogo } from "ui/kit/logos";
+import ThemeSwitcher from "ui/kit-new/theme-switcher";
+import Footer from "ui/layout/footer.astro";
+import { LinkButton } from "ui/kit-new/buttons";
+import Link from "ui/kit-new/link";
+import "ui/base.css";
+import type { Theme } from "ui/utils/getTheme";
+import HamburgerSideMenu from "./components/hamburger-menu";
+
+export interface Props {
+  theme: Theme;
+  class?: string;
+  title?: string;
+}
+
+const { theme, class: clazz, title = "letsbesafe" } = Astro.props;
+const headerLinks = [
+  { title: "Projects", to: "/projects", button: false },
+  { title: "Vote", to: "/projects/vote", button: true },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" class={clsx(theme)}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <!-- favicon - (realfavicongenerator.net) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#111111" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#111111" />
+  </head>
+  <body>
+    <div class="flex flex-col min-h-screen">
+      <div class="mx-8">
+        <header class="w-full max-w-[1366px] mx-auto flex items-center justify-between h-20 sm:h-24 text-normal">
+          <Link to="/" class="h-7 sm:h-8">
+            <LetsBeSafeLogo variant="icon" class="w-auto h-full pb-1 md:hidden" />
+            <LetsBeSafeLogo class="hidden w-auto h-full pb-1 md:block" />
+          </Link>
+          <div class="hidden [@media(min-width:500px)]:flex items-center space-x-8">
+            {
+              headerLinks.map((link) =>
+                link.button ? (
+                  <LinkButton to={link.to} variant="outline">
+                    {link.title}
+                  </LinkButton>
+                ) : (
+                  <Link to={link.to} underlineHover>
+                    {link.title}
+                  </Link>
+                )
+              )
+            }
+            <ThemeSwitcher class="ml-1" theme={theme} client:visible />
+          </div>
+          <HamburgerSideMenu
+            class="[@media(min-width:500px)]:hidden"
+            theme={theme}
+            links={headerLinks}
+            client:visible
+          />
+        </header>
+      </div>
+      <main class={clsx("flex flex-col items-center grow", clazz)}>
+        <slot />
+      </main>
+    </div>
+    <Footer mainSite={true} />
+  </body>
+</html>

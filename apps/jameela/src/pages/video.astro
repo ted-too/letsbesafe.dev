@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import getTheme from "ui/utils/getTheme";
+import YouTube from "youtube-sr";
+import VideoPage from "../components/video-page/page";
+import invariant from "tiny-invariant";
+
+const theme = getTheme(Astro);
+const id = Astro.url.searchParams.get("id")?.toString() || "";
+const platform = Astro.url.searchParams.get("platform")?.toString() || "";
+try {
+  invariant(id);
+  invariant(platform);
+} catch (err) {
+  return Astro.redirect("/404");
+}
+const data = await YouTube.searchOne(`http://www.youtube.com/watch?v=${id}`);
+---
+
+<Layout theme={theme}>
+  <VideoPage data={data} client:visible />
+</Layout>
