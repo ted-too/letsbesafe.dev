@@ -1,59 +1,45 @@
 import api from "../utils/api";
 import CustomToaster from "./toaster";
 import clsx from "clsx";
-import { createForm } from "solid-create-form";
+import { createFormControl, createFormGroup } from "solid-forms";
 import { Component, createSignal } from "solid-js";
 import toast from "solid-toast";
 import { Button } from "ui/kit-new/buttons";
-import { Checkbox, TextAreaInput, TextInput } from "ui/kit-new/inputs";
+import { Checkbox, FormTextAreaInput, FormTextInput, TextAreaInput, TextInput } from "ui/kit-new/inputs";
 import Select from "ui/kit-new/select";
 
-interface FormValues {
-  title: string;
-  handle: string;
-  description: string;
-  notDuplicate: boolean;
-  allowContact: boolean;
-}
-
-const defaultValues = {
-  title: "",
-  handle: "",
-  description: "",
-  notDuplicate: false,
-  allowContact: false,
-};
-
 const NewIdeaForm: Component<{ class?: string }> = (props) => {
+  const [notDuplicate, setNotDuplicate] = createSignal(false);
+  const [allowContact, setAllowContact] = createSignal(false);
   const [contactPlatform, setContactPlatform] = createSignal<any>();
-  const form = createForm<FormValues>({ defaultValues });
-  const [formLoading, setFormLoading] = createSignal(false);
-  const [formSubmitted, setFormSubmitted] = createSignal(false);
-  const handleSubmit = async ({ notDuplicate, allowContact, handle, ...data }: FormValues) => {
-    if (formSubmitted() || !notDuplicate) return;
-    if (allowContact && !contactPlatform().value)
-      return toast.error("Please select the platform you wish to be contacted on");
-    setFormLoading(true);
-    const payload = { ...data, ...(allowContact && { platform: contactPlatform().value, handle }) };
+  const form = createFormGroup({
+    title: createFormControl("", {
+      required: true,
+    }),
+    handle: createFormControl("", {
+      required: allowContact(),
+      disabled: !allowContact(),
+    }),
+    description: createFormControl(""),
+  });
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    if (form.isSubmitted || !notDuplicate()) return;
+    form.markPending(true)
+    const payload = { ...form.value, ...(contactPlatform().value && { platform: contactPlatform().value }) };
     await api.records
       .create("new_idea_form", payload)
       .then(() => {
-        toast.success("Idea submitted!");
-        setFormSubmitted(true);
+        toast.success("Idea submitted!")
+        form.markSubmitted(true)
       })
       .catch((err) => toast.error(err.message));
-    setFormLoading(false);
+    form.markPending(false)
   };
   return (
     <>
-      <form
-        onSubmit={form.wrapSubmit(handleSubmit)}
-        class={clsx("flex flex-col space-y-5 items-center w-full", props.class)}
-      >
-        <Checkbox
-          onChange={(e) => form.handlers.notDuplicate(!form.values().notDuplicate)}
-          checked={form.values().notDuplicate}
-        >
+      <form onSubmit={handleSubmit} class={clsx("flex flex-col space-y-5 items-center w-full", props.class)}>
+        <Checkbox onChange={(e) => setNotDuplicate(!allowContact())} checked={notDuplicate()}>
           I have checked on the main{" "}
           <a href="/projects/vote" class="underline text-melon-500">
             voting
@@ -61,17 +47,8 @@ const NewIdeaForm: Component<{ class?: string }> = (props) => {
           page and my idea will not be a duplicate
         </Checkbox>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
-          <TextInput
-            name="title"
-            placeholder="Title"
-            value={form.values().title}
-            onInput={(e) => form.handlers.title(e.currentTarget.value)}
-            required
-          />
-          <Checkbox
-            onChange={(e) => form.handlers.allowContact(!form.values().allowContact)}
-            checked={form.values().allowContact}
-          >
+          <FormTextInput name="title" placeholder="Title" control={form.controls.title} />
+          <Checkbox onChange={(e) => setAllowContact(!allowContact())} checked={allowContact()}>
             I would like to be contacted regarding my idea
           </Checkbox>
           <Select
@@ -83,26 +60,17 @@ const NewIdeaForm: Component<{ class?: string }> = (props) => {
               { id: "platform-email", label: "Email", value: "email" },
               { id: "platform-discord", label: "Discord", value: "discord" },
             ]}
-            disabled={!form.values().allowContact}
+            disabled={!allowContact()}
           />
-          <TextInput
-            name="handle"
-            placeholder="Handle"
-            value={form.values().handle}
-            onInput={(e) => form.handlers.handle(e.currentTarget.value)}
-            required
-            disabled={!form.values().allowContact}
-          />
-          <TextAreaInput
+          <FormTextInput name="handle" placeholder="Handle" control={form.controls.handle} />
+          <FormTextAreaInput
             name="description"
             class="sm:col-span-2"
             placeholder="Description"
-            value={form.values().description}
-            onInput={(e) => form.handlers.description(e.currentTarget.value)}
-            required
+            control={form.controls.description}
           />
         </div>
-        <Button type="submit" loading={formLoading()} disabled={!form.isDirty() || formSubmitted()} size="lg">
+        <Button type="submit" loading={form.isPending} disabled={form.isSubmitted} size="lg">
           Submit
         </Button>
       </form>

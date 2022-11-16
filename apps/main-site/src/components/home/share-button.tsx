@@ -6,31 +6,28 @@ import Tooltip from "ui/kit-new/tooltip";
 
 const ShareButton: Component = () => {
   const [showShare, setShowShare] = createSignal(false);
-  const share = async () => {
-    const shareData = {
-      url: "https://letsbesafe.dev",
-      title: "letsbesafe.dev",
-      text: "a collection of safer more private alternatives to your everyday apps",
-    };
-    try {
-      await navigator.share(shareData);
-    } catch (error) {
-      await navigator.clipboard.writeText(shareData.url);
-      await new Promise((resolve) => {
-        setShowShare(true);
-        setTimeout(resolve, 1000);
-      });
-      setShowShare(false);
-    }
-  };
+  const toggleSideBar = () => setShowShare(!showShare());
+  const closeSidebar = () => setShowShare(false);
   return (
     <>
       <Tooltip label="share">
         <button
           class="text-secondary p-0 focus:outline-none focus:text-melon-400 active:text-melon-400 transition-colors"
-          aria-label="share website"
           onMouseDown={(e) => e.preventDefault()}
-          onClick={share}
+          onClick={async () => {
+            const shareData = {
+              url: "https://letsbesafe.dev",
+              title: "letsbesafe.dev",
+              text: "a collection of safer more private alternatives to your everyday apps",
+            };
+            if (navigator.canShare(shareData)) return await navigator.share(shareData);
+            await navigator.clipboard.writeText(shareData.url);
+            await new Promise((resolve) => {
+              setShowShare(true);
+              setTimeout(resolve, 1000);
+            });
+            setShowShare(false);
+          }}
         >
           <Send2 class="w-auto h-5" />
         </button>

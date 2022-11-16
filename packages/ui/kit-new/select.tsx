@@ -117,7 +117,6 @@ const Select: Component<Props> = (props) => {
                 selected() === option && "bg-melon-200"
               )}
               onClick={() => changeOption(option)}
-              role='listitem'
             >
               {option.label}
             </li>
