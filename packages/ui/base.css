@@ -5,6 +5,7 @@
   font-weight: 200;
   src: local(""), url("/fonts/nunito-v25-latin-200.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-200.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 /* nunito-300 - latin */
 @font-face {
@@ -13,6 +14,7 @@
   font-weight: 300;
   src: local(""), url("/fonts/nunito-v25-latin-300.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-300.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 /* nunito-regular - latin */
 @font-face {
@@ -21,6 +23,7 @@
   font-weight: 400;
   src: local(""), url("/fonts/nunito-v25-latin-regular.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 /* nunito-500 - latin */
 @font-face {
@@ -29,6 +32,7 @@
   font-weight: 500;
   src: local(""), url("/fonts/nunito-v25-latin-500.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 /* nunito-600 - latin */
 @font-face {
@@ -37,6 +41,7 @@
   font-weight: 600;
   src: local(""), url("/fonts/nunito-v25-latin-600.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-600.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 /* nunito-700 - latin */
 @font-face {
@@ -45,6 +50,7 @@
   font-weight: 700;
   src: local(""), url("/fonts/nunito-v25-latin-700.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/fonts/nunito-v25-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
 }
 
 @tailwind base;
@@ -86,14 +92,13 @@
     @apply text-dark-200 dark:text-w-overlay-700;
   }
   .border-primary {
-    @apply dark:border-black-300 border-dark-300
+    @apply dark:border-black-300 border-dark-300;
   }
   .border-secondary {
-    @apply dark:border-black-500 border-dark-400
+    @apply dark:border-black-500 border-dark-400;
   }
   .border-tertiary {
-    @apply dark:border-black-700 border-dark-200
-
+    @apply dark:border-black-700 border-dark-200;
   }
   .ring-color {
     @apply ring-black dark:ring-w-overlay-700 ring-offset-white dark:ring-offset-black;
