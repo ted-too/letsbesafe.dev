@@ -17,7 +17,7 @@ export default defineConfig({
   }), solidJs()],
   vite: {
     ssr: {
-      noExternal: ["@motionone/solid", "solid-dismiss", "solid-toast"]
+      noExternal: ["@motionone/solid", "solid-dismiss", "solid-create-form", "solid-toast"]
     }
   }
 });

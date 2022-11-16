@@ -70,7 +70,8 @@ export default function ProjectsSlider(props: Props) {
           setScrollPercent(newPos);
         }}
         onMouseMove={handleScroll}
-        role='tablist'
+        role='menu'
+        aria-label="Projects"
         tabindex="-1"
         ref={slider}
       >
@@ -78,6 +79,8 @@ export default function ProjectsSlider(props: Props) {
           href="/projects#jameela"
           onClick={(e) => scrolling() && e.preventDefault()}
           class="text-dark-400 no-drag hover:text-melon focus:outline-none focus:text-melon transition-colors duration-300"
+          role="menuitem"
+          aria-label="Jameela - youtube video downloader"
         >
           <Jameela class="w-[77vw] max-w-[26.25rem] h-auto" />
         </a>
@@ -85,6 +88,8 @@ export default function ProjectsSlider(props: Props) {
           href="/projects#kawan"
           onClick={(e) => scrolling() && e.preventDefault()}
           class="text-dark-400 no-drag hover:text-melon focus:outline-none focus:text-melon transition-colors duration-300"
+          role="menuitem"
+          aria-label="Kawan - torrent search engine"
         >
           <Kawan class="w-[77vw] max-w-[26.25rem] h-auto" />
         </a>
