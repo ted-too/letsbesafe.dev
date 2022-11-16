@@ -23,7 +23,7 @@ const linkPrefix = mainSite ? "/" : "https://letsbesafe.dev/";
       <div class="w-[19rem] col-span-full sm:col-span-4 xl:col-span-3 flex flex-col space-y-6">
         <div class="flex flex-col space-y-2">
           <span class="text-sm font-light text-light">a project by</span>
-          <Link to={linkPrefix} class="h-6">
+          <Link to={linkPrefix} class="h-6" aria-label="Letsbesafe Logo">
             <LetsBeSafeLogo class="w-auto h-full pb-1" />
           </Link>
         </div>
@@ -34,6 +34,7 @@ const linkPrefix = mainSite ? "/" : "https://letsbesafe.dev/";
             target="_blank"
             variant="transparent"
             class="hover:text-secondary focus:text-melon-400"
+            aria-label="Github Repository"
           >
             <GithubLogo class="w-auto h-5" />
           </LinkButton>
@@ -42,6 +43,7 @@ const linkPrefix = mainSite ? "/" : "https://letsbesafe.dev/";
             target="_blank"
             variant="transparent"
             class="hover:text-secondary focus:text-melon-400"
+            aria-label="Donate on PayPal"
           >
             <PayPal class="w-auto h-5" />
           </LinkButton>
@@ -62,7 +64,7 @@ const linkPrefix = mainSite ? "/" : "https://letsbesafe.dev/";
         <a
           href="https://github.com/ted-too/letsbesafe.dev/issues"
           target="_blank"
-          class="mt-4 font-light text-melon-500 hover:underline focus:outline-none focus:underline w-max"
+          class="mt-4 font-light text-melon-600 hover:underline focus:outline-none focus:underline w-max"
           >Found a bug?</a
         >
       </div>

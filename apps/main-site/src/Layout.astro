@@ -28,7 +28,31 @@ const headerLinks = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <!-- Primary Meta Tags -->
+    <title>letsbesafe</title>
+    <meta name="title" content="letsbesafe" />
+    <meta
+      name="description"
+      content="A collection of safe and privacy focused alternatives to apps that you may use in your everyday life."
+    />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://letsbesafe.dev/" />
+    <meta property="og:title" content="letsbesafe" />
+    <meta
+      property="og:description"
+      content="A collection of safe and privacy focused alternatives to apps that you may use in your everyday life."
+    />
+    <meta property="og:image" content="https://letsbesafe.dev/share-image.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://letsbesafe.dev/" />
+    <meta property="twitter:title" content="letsbesafe" />
+    <meta
+      property="twitter:description"
+      content="A collection of safe and privacy focused alternatives to apps that you may use in your everyday life."
+    />
+    <meta property="twitter:image" content="https://letsbesafe.dev/share-image.png" />
     <!-- favicon - (realfavicongenerator.net) -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -42,7 +66,7 @@ const headerLinks = [
     <div class="flex flex-col min-h-screen">
       <div class="mx-8">
         <header class="w-full max-w-[1366px] mx-auto flex items-center justify-between h-20 sm:h-24 text-normal">
-          <Link to="/" class="h-7 sm:h-8">
+          <Link to="/" class="h-7 sm:h-8" aria-label="Letsbesafe Logo">
             <LetsBeSafeLogo variant="icon" class="w-auto h-full pb-1 md:hidden" />
             <LetsBeSafeLogo class="hidden w-auto h-full pb-1 md:block" />
           </Link>

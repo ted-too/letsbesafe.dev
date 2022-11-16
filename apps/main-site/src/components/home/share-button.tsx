@@ -13,6 +13,7 @@ const ShareButton: Component = () => {
       <Tooltip label="share">
         <button
           class="text-secondary p-0 focus:outline-none focus:text-melon-400 active:text-melon-400 transition-colors"
+          aria-label="share website"
           onMouseDown={(e) => e.preventDefault()}
           onClick={async () => {
             const shareData = {
