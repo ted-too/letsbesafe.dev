@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { IFormControl, createFormControl } from "solid-forms";
 import { Component, JSX, mergeProps, splitProps } from "solid-js";
 
 // TODO: Setup loading indicators
@@ -76,49 +75,5 @@ export const Checkbox: Component<CheckboxProps> = (_props) => {
       />
       <span class=" font-light text-secondary">{props.children}</span>
     </div>
-  );
-};
-
-export const FormTextInput: Component<{
-  control?: IFormControl<string>;
-  placeholder?: string;
-  name?: string;
-  type?: string;
-  class?: string;
-}> = (_props) => {
-  const [props, rest] = splitProps(mergeProps({ control: createFormControl(""), type: "text" }, _props), ["control"]);
-  return (
-    <TextInput
-      value={props.control.value}
-      oninput={(e) => {
-        props.control.setValue(e.currentTarget.value);
-      }}
-      onblur={() => props.control.markTouched(true)}
-      disabled={props.control.isDisabled}
-      required={props.control.isRequired}
-      {...rest}
-    />
-  );
-};
-
-export const FormTextAreaInput: Component<{
-  control?: IFormControl<string>;
-  placeholder?: string;
-  name?: string;
-  type?: string;
-  class?: string;
-}> = (_props) => {
-  const [props, rest] = splitProps(mergeProps({ control: createFormControl(""), type: "text" }, _props), ["control"]);
-  return (
-    <TextAreaInput
-      value={props.control.value}
-      oninput={(e) => {
-        props.control.setValue(e.currentTarget.value);
-      }}
-      onblur={() => props.control.markTouched(true)}
-      disabled={props.control.isDisabled}
-      required={props.control.isRequired}
-      {...rest}
-    />
   );
 };
