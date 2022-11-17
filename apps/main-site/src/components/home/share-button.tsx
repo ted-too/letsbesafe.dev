@@ -1,8 +1,8 @@
 import { Motion, Presence } from "@motionone/solid";
 import { Component, Show, createSignal, onCleanup } from "solid-js";
 import { Send2 } from "ui/iconsax";
-import { Button, IconButton, LinkButton } from "ui/kit-new/buttons";
-import Tooltip from "ui/kit-new/tooltip";
+import { Button, IconButton, LinkButton } from "ui/kit/buttons";
+import Tooltip from "ui/kit/tooltip";
 
 const ShareButton: Component = () => {
   const [showShare, setShowShare] = createSignal(false);

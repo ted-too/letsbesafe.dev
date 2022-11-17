@@ -1,45 +1,49 @@
 import type { Platform, SearchResult } from "../types";
 import clsx from "clsx";
+import type { Component } from "solid-js";
 
-type Props = {
+interface Props {
   data: SearchResult;
-  type: Platform;
   class?: string;
   noLink?: boolean;
-};
+}
 
-const YTImage = ({ class: clazz = "", src = "", title = "", noHover = false }) => (
+interface YTImageProps {
+  class?: string;
+  src: string;
+  title: string;
+  noHover?: boolean;
+}
+
+const YTImage: Component<YTImageProps> = (props) => (
   <div
     class={clsx(
-      "aspect-w-16 aspect-h-9 w-full rounded-md overflow-hidden transition-opacity",
-      !noHover ? "hover:opacity-90" : "pointer-events-none select-none",
-      clazz
+      "aspect-video w-full rounded-md overflow-hidden transition-opacity",
+      !props.noHover && "hover:opacity-90",
+      props.class
     )}
   >
-    <img src={src} alt={title} class="object-contain w-full h-full bg-dark-900" />
+    <img src={props.src} alt={props.title} class="object-contain w-full h-full bg-black no-drag" />
   </div>
 );
 
-const Children = ({ type, data, noHover }: { type: Platform; data: Props["data"]; noHover?: boolean }) => (
-  <>
-    {type === "YT" && <YTImage src={data.thumbnail?.url || "/no-image.png"} title={data.title} noHover={noHover} />}
-    <span class="text-lg font-semibold text-normal line-clamp-3">{data.title}</span>
-  </>
-);
-
-export default function SearchResultCard({ data, type, class: clazz, noLink = false }: Props) {
+const SearchResultCard: Component<Props> = (props) => {
   const containerClass = clsx(
-    "flex flex-col space-y-4 transition-all rounded-md w-80 sm:w-64 xl:w-80 h-full",
-    !noLink && "focus-ring",
-    clazz
+    "flex flex-col space-y-4 transition-all rounded-md max-w-[20rem] sm:max-w-[16rem] xl:max-w-[20rem] w-full h-full focus-ring select-none",
+    props.class
   );
-  return noLink ? (
-    <div class={containerClass}>
-      <Children type="YT" data={data} noHover />
-    </div>
-  ) : (
-    <a href={`/video?platform=${type.toLowerCase()}&id=${encodeURIComponent(data.id)}`} class={containerClass}>
-      <Children type="YT" data={data} />
+  const children = (
+    <>
+      <YTImage src={props.data.thumbnail?.url || "/no-image.png"} noHover={props.noLink} title={props.data.title} />
+      <span class="text-lg font-semibold line-clamp-3">{props.data.title}</span>
+    </>
+  );
+  if (props.noLink) return <div class={containerClass}>{children}</div>;
+  return (
+    <a href={`/video/${encodeURIComponent(props.data.id)}`} class={containerClass}>
+      {children}
     </a>
   );
-}
+};
+
+export default SearchResultCard;

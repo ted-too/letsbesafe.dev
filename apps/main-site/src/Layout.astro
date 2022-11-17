@@ -1,10 +1,10 @@
 ---
 import clsx from "clsx";
-import { LetsBeSafeLogo } from "ui/kit/logos";
-import ThemeSwitcher from "ui/kit-new/theme-switcher";
+import { LetsBeSafeLogo } from "ui/logos";
+import ThemeSwitcher from "ui/kit/theme-switcher";
 import Footer from "ui/layout/footer.astro";
-import { LinkButton } from "ui/kit-new/buttons";
-import Link from "ui/kit-new/link";
+import { LinkButton } from "ui/kit/buttons";
+import Link from "ui/kit/link";
 import "ui/base.css";
 import type { Theme } from "ui/utils/getTheme";
 import HamburgerSideMenu from "./components/hamburger-menu";
@@ -72,7 +72,7 @@ const headerLinks = [
   <body>
     <div class="flex flex-col min-h-screen">
       <div class="mx-8">
-        <header class="w-full max-w-[1366px] mx-auto flex items-center justify-between h-20 sm:h-24 text-normal">
+        <header class="w-full max-w-[1366px] mx-auto flex items-center justify-between h-20 sm:h-24">
           <Link to="/" class="h-7 sm:h-8" aria-label="Letsbesafe Logo">
             <LetsBeSafeLogo variant="icon" class="w-auto h-full pb-1 md:hidden" />
             <LetsBeSafeLogo class="hidden w-auto h-full pb-1 md:block" />

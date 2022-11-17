@@ -1,8 +1,9 @@
 import type { AudioFormat, VideoFormat } from "../../types";
-import humanFileSize from "ui/utils/human-file-size";
 import clsx from "clsx";
+import type { Component } from "solid-js";
 import { InfoCircle } from "ui/iconsax";
-import ToolTip  from "ui/kit/tooltip";
+import ToolTip from "ui/kit/tooltip";
+import humanFileSize from "ui/utils/human-file-size";
 
 type Props =
   | {
@@ -20,21 +21,21 @@ type Props =
       data: VideoFormat;
     };
 
-export default function Format({ type, id, thumbnail, title, data }: Props) {
-  const quality = type === "audio" ? `${data.bitrate}kbps` : `${data.quality}p`;
+const Format: Component<Props> = (props) => {
+  const quality = props.type === "audio" ? `${props.data.bitrate}kbps` : `${props.data.quality}p`;
 
   const handleDownload = () => {
     const params = [];
-    params.push(`id=${id}`);
+    params.push(`id=${props.id}`);
     params.push("platform=yt");
-    params.push(`quality=${type === "audio" ? data.bitrate : data.quality}`);
-    params.push(`title=${encodeURIComponent(title)}`);
-    params.push(`thumbnail=${encodeURIComponent(thumbnail)}`);
-    params.push(`container=${data.container}`);
-    params.push(`format=${type}`);
-    params.push(`itag=${data.itag}`);
-    params.push(`size=${data.size}`);
-    if (type === "video") params.push(`audioItag=${data.audioItag}`);
+    params.push(`quality=${props.type === "audio" ? props.data.bitrate : props.data.quality}`);
+    params.push(`title=${encodeURIComponent(props.title)}`);
+    params.push(`thumbnail=${encodeURIComponent(props.thumbnail)}`);
+    params.push(`container=${props.data.container}`);
+    params.push(`format=${props.type}`);
+    params.push(`itag=${props.data.itag}`);
+    params.push(`size=${props.data.size}`);
+    if (props.type === "video") params.push(`audioItag=${props.data.audioItag}`);
     window.open(`/api/download?${params.join("&")}`, "_blank");
   };
   return (
@@ -42,23 +43,23 @@ export default function Format({ type, id, thumbnail, title, data }: Props) {
       onClick={handleDownload}
       onMouseDown={(e) => e.preventDefault()}
       class={clsx(
-        "w-full flex flex-col focus-ring rounded-lg space-y-1 py-4 px-6",
-        type === "video" ? "bg-blue-50 dark:bg-blue-200" : "bg-pink-50 dark:bg-pink-200"
+        "w-full flex flex-col focus-ring hover-ring rounded-lg space-y-1 py-4 px-6",
+        props.type === "video" ? "bg-[#BEDDEF] dark:bg-[#8DC3E2]" : "bg-melon-200 dark:bg-melon-400"
       )}
     >
       <span class="sr-only">
-        {data.container} {quality}
+        {props.data.container} {quality}
       </span>
       <div class="flex items-center space-x-3">
-        <span class="text-lg font-semibold">{data.container}</span>
-        {type === "video" && data.noAudio && (
+        <span class="text-lg font-semibold">{props.data.container}</span>
+        {props.type === "video" && props.data.noAudio && (
           <ToolTip label="no audio">
             <InfoCircle size={16} />
           </ToolTip>
         )}
       </div>
       <div class="flex items-center space-x-2 text-sm font-light">
-        <span>{humanFileSize(data.size)}</span>
+        <span>{humanFileSize(props.data.size)}</span>
         <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="2" cy="2.5" r="2" fill="currentColor" />
         </svg>
@@ -66,4 +67,6 @@ export default function Format({ type, id, thumbnail, title, data }: Props) {
       </div>
     </button>
   );
-}
+};
+
+export default Format;

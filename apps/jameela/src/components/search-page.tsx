@@ -1,20 +1,24 @@
 import type { SearchResult } from "../types";
-import SearchForm from "./search-form";
 import SearchResultCard from "./search-result";
-import { createSignal } from "solid-js";
+import clsx from "clsx";
+import { Component, For } from "solid-js";
 
 type Props = {
   searchResults: SearchResult[];
+  class?: string;
 };
 
-export default function SearchPage({ searchResults }: Props) {
+const SearchPage: Component<Props> = (props) => {
   return (
-    <SearchForm>
-      <div class="grid items-start grid-cols-1 gap-6 mx-auto mt-6 mb-16 justify-items-center sm:grid-cols-2 xl:grid-cols-3 sm:max-w-xl xl:max-w-5xl">
-        {searchResults.map((result) => (
-          <SearchResultCard type="YT" data={result} />
-        ))}
-      </div>
-    </SearchForm>
+    <div
+      class={clsx(
+        "grid items-start grid-cols-1 gap-6 mx-auto mb-16 justify-items-center sm:grid-cols-2 xl:grid-cols-3 sm:max-w-xl xl:max-w-5xl",
+        props.class
+      )}
+    >
+      <For each={props.searchResults}>{(result) => <SearchResultCard data={result} />}</For>
+    </div>
   );
-}
+};
+
+export default SearchPage;

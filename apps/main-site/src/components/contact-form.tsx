@@ -4,9 +4,9 @@ import clsx from "clsx";
 import { createForm } from "solid-create-form";
 import { Component, createSignal } from "solid-js";
 import toast from "solid-toast";
-import { Button } from "ui/kit-new/buttons";
-import { TextAreaInput, TextInput } from "ui/kit-new/inputs";
-import Select from "ui/kit-new/select";
+import { Button } from "ui/kit/buttons";
+import { TextAreaInput, TextInput } from "ui/kit/inputs";
+import Select from "ui/kit/select";
 
 interface FormValues {
   name: string;
