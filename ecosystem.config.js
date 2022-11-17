@@ -13,5 +13,11 @@ module.exports = {
       watch: true,
       args: "serve --http=127.0.0.1:4000",
     },
+    {
+      name: "jameela",
+      cwd: "apps/jameela",
+      script: "pnpm",
+      args: "start",
+    },
   ],
 };
