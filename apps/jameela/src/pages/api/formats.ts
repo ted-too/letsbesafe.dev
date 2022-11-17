@@ -1,6 +1,5 @@
 import type { Formats } from "../../types";
 import type { APIContext } from "astro";
-import { format } from "path";
 import invariant from "tiny-invariant";
 import ytdl from "ytdl-core";
 

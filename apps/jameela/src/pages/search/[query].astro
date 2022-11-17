@@ -1,9 +1,10 @@
 ---
 import SearchPage from "../../components/search-page";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../Layout.astro";
 import getTheme from "ui/utils/getTheme";
 import YouTube from "youtube-sr";
 import type { SearchResult } from "../../types";
+import SearchForm from "../../components/search-form";
 
 let results: SearchResult[] = [];
 const searchTerm = Astro.params.query?.toString() || "";
@@ -15,5 +16,6 @@ const theme = getTheme(Astro);
 ---
 
 <Layout theme={theme}>
-  <SearchPage searchResults={results} client:visible />
+  <SearchForm client:visible />
+  <SearchPage class="mt-8" searchResults={results} client:visible />
 </Layout>

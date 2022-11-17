@@ -1,6 +1,6 @@
 import { Motion, Presence } from "@motionone/solid";
 import { Component, Show } from "solid-js";
-import { Button } from "ui/kit-new/buttons";
+import { Button } from "ui/kit/buttons";
 
 type Data = {
   id: string;

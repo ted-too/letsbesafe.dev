@@ -3,9 +3,9 @@ import clsx from "clsx";
 import { createFocusTrap } from "focus-trap";
 import { Component, Show, createSignal, onCleanup, onMount } from "solid-js";
 import { CloseX, HamburgerMenu, Send2 } from "ui/iconsax";
-import { Button, IconButton, LinkButton } from "ui/kit-new/buttons";
-import Link from "ui/kit-new/link";
-import ThemeSwitcher from "ui/kit-new/theme-switcher";
+import { Button, IconButton, LinkButton } from "ui/kit/buttons";
+import Link from "ui/kit/link";
+import ThemeSwitcher from "ui/kit/theme-switcher";
 import type { Theme } from "ui/utils/getTheme";
 
 interface Props {

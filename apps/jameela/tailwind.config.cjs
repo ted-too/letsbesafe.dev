@@ -1,1 +1,1 @@
-module.exports = require('ui/tailwind.config-legacy')
+module.exports = require('ui/tailwind.config')
