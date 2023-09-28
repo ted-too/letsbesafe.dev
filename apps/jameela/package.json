@@ -13,27 +13,27 @@
     "lint": "eslint --ext .tsx,.ts,.astro src"
   },
   "dependencies": {
-    "@astrojs/solid-js": "^1.2.1",
-    "@astrojs/tailwind": "^2.1.1",
-    "@astrojs/vercel": "^2.3.2",
+    "@astrojs/solid-js": "^3.0.1",
+    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/vercel": "^5.0.1",
     "@fastify/middie": "^8.0.0",
     "@fastify/static": "^6.5.0",
-    "astro": "^1.6.0",
+    "astro": "^3.1.4",
     "clsx": "^1.2.1",
     "fastify": "^4.9.2",
     "solid-js": "^1.4.3",
-    "tailwindcss": "^3.0.24",
+    "tailwindcss": "^3.3.3",
     "tiny-invariant": "^1.3.1",
+    "ui": "workspace:*",
     "universal-cookie": "^4.0.4",
     "youtube-sr": "^4.3.4",
-    "ytdl-core": "^4.11.2",
-    "ui": "workspace:*"
+    "ytdl-core": "^4.11.2"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
     "@types/node": "^18.7.16",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^7.3.0",
+    "eslint-config-custom": "workspace:*",
     "kill-port": "^2.0.1"
   }
 }

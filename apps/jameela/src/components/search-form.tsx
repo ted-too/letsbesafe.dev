@@ -32,7 +32,7 @@ export default function SearchForm({ children, firstSearch = false }: Props) {
             name="search"
             required
           />
-          <Button type="submit" class="text-sm rounded-lg sm:text-base">
+          <Button type="submit" class="text-sm rounded-lg sm:text-base bg-dark-0">
             Search
           </Button>
         </fieldset>
