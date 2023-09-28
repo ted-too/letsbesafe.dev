@@ -13,11 +13,11 @@
     "lint": "eslint --ext .tsx,.ts,.astro src"
   },
   "dependencies": {
-    "@astrojs/node": "^3.0.0",
-    "@astrojs/solid-js": "^1.2.1",
-    "@astrojs/tailwind": "^2.1.1",
+    "@astrojs/solid-js": "^3.0.1",
+    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/vercel": "^5.0.1",
     "@motionone/solid": "^10.14.3",
-    "astro": "^1.6.4",
+    "astro": "^3.1.1",
     "clsx": "^1.2.1",
     "focus-trap": "^7.0.0",
     "pocketbase": "^0.7.4",
@@ -30,7 +30,7 @@
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
-    "@types/node": "^18.7.16"
+    "@types/node": "^18.7.16",
+    "eslint-config-custom": "workspace:*"
   }
 }
